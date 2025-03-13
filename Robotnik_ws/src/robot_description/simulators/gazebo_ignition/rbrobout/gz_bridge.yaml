@@ -10,6 +10,12 @@
   ros_type_name: "geometry_msgs/msg/Twist"
   gz_type_name: "ignition.msgs.Twist"
   direction: "ROS_TO_GZ"
+  
+- ros_topic_name: "/robot/robotnik_base_controller/cmd_vel"
+  gz_topic_name: "cmd_vel_rear"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "ignition.msgs.Twist"
+  direction: "ROS_TO_GZ"
 
 - ros_topic_name: "/robot/front_laser/scan"
   gz_topic_name: "/front_laser/scan"

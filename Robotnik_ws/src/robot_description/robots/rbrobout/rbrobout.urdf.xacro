@@ -112,7 +112,8 @@
     </xacro:if>
     <xacro:if value="${simulator == 'gazebo_ignition'}">
         <xacro:rbrobout_gz_ignition_control namespace="$(arg namespace)" prefix="$(arg prefix)"/>
-        <xacro:ros_diff_move_gazebo_ignition prefix="$(arg prefix)"/>
+        <xacro:ros_diff_move_gazebo_ignition_front prefix="$(arg prefix)"/>
+        <xacro:ros_diff_move_gazebo_ignition_rear prefix="$(arg prefix)"/>
     </xacro:if>
     <xacro:if value="${simulator == 'none'}">
         <xacro:rbrobout_base_hw_controller/>
