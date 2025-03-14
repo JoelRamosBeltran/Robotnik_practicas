@@ -61,14 +61,14 @@
       cmd_vel_timeout: 1.0
 
       #Topics
-      cmd_vel_topic: ~/cmd_vel
-      odom_topic: ~/odom
-      imu_topic: /robot/imu/data
+      cmd_vel_topic: /robot/robotnik_base_controller/cmd_vel
+      odom_topic: /robot/robotnik_base_controller/odometry
+      imu_topic: /imu/data
       emergency_topic: ~/emergency
       joint_control_topic: ~/joint_control_command
 
       #Odom
-      odom_frame_id: robot_odom_robotnik_controller
+      odom_frame_id: robot_odom
       base_frame_id: robot_base_footprint
       set_odometry_service: ~/set_odometry
 

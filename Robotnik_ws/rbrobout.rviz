@@ -121,47 +121,46 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        robot_base_footprint:
-          robot_base_link:
-            robot_front_laser_base_link:
-              robot_front_laser_link:
-                {}
-            robot_front_rgbd_camera_base_link:
-              robot_front_rgbd_camera_link:
-                robot_front_rgbd_camera_color_frame:
-                  robot_front_rgbd_camera_color_optical_frame:
-                    {}
-                robot_front_rgbd_camera_depth_frame:
-                  robot_front_rgbd_camera_depth_optical_frame:
-                    {}
-                robot_front_rgbd_camera_infra1_frame:
-                  robot_front_rgbd_camera_infra1_optical_frame:
-                    {}
-                robot_front_rgbd_camera_infra2_frame:
-                  robot_front_rgbd_camera_infra2_optical_frame:
-                    {}
-            robot_rear_laser_base_link:
-              robot_rear_laser_link:
-                {}
-            robot_rear_rgbd_camera_base_link:
-              robot_rear_rgbd_camera_link:
-                robot_rear_rgbd_camera_color_frame:
-                  robot_rear_rgbd_camera_color_optical_frame:
-                    {}
-                robot_rear_rgbd_camera_depth_frame:
-                  robot_rear_rgbd_camera_depth_optical_frame:
-                    {}
-                robot_rear_rgbd_camera_infra1_frame:
-                  robot_rear_rgbd_camera_infra1_optical_frame:
-                    {}
-                robot_rear_rgbd_camera_infra2_frame:
-                  robot_rear_rgbd_camera_infra2_optical_frame:
-                    {}
-            robot_vectornav_base_link:
-              robot_vectornav_link:
-                {}
         robot_odom:
-          {}
+          robot_base_footprint:
+            robot_base_link:
+              robot_front_laser_base_link:
+                robot_front_laser_link:
+                  {}
+              robot_front_rgbd_camera_base_link:
+                robot_front_rgbd_camera_link:
+                  robot_front_rgbd_camera_color_frame:
+                    robot_front_rgbd_camera_color_optical_frame:
+                      {}
+                  robot_front_rgbd_camera_depth_frame:
+                    robot_front_rgbd_camera_depth_optical_frame:
+                      {}
+                  robot_front_rgbd_camera_infra1_frame:
+                    robot_front_rgbd_camera_infra1_optical_frame:
+                      {}
+                  robot_front_rgbd_camera_infra2_frame:
+                    robot_front_rgbd_camera_infra2_optical_frame:
+                      {}
+              robot_rear_laser_base_link:
+                robot_rear_laser_link:
+                  {}
+              robot_rear_rgbd_camera_base_link:
+                robot_rear_rgbd_camera_link:
+                  robot_rear_rgbd_camera_color_frame:
+                    robot_rear_rgbd_camera_color_optical_frame:
+                      {}
+                  robot_rear_rgbd_camera_depth_frame:
+                    robot_rear_rgbd_camera_depth_optical_frame:
+                      {}
+                  robot_rear_rgbd_camera_infra1_frame:
+                    robot_rear_rgbd_camera_infra1_optical_frame:
+                      {}
+                  robot_rear_rgbd_camera_infra2_frame:
+                    robot_rear_rgbd_camera_infra2_optical_frame:
+                      {}
+              robot_vectornav_base_link:
+                robot_vectornav_link:
+                  {}
       Update Interval: 0
       Value: true
     - Angle Tolerance: 0.10000000149011612
@@ -359,16 +358,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 44.77460479736328
+      Distance: 13.706442832946777
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.9671879410743713
-        Y: -0.08026263862848282
-        Z: 1.5663737058639526
+        X: 1.3495397567749023
+        Y: 1.968328595161438
+        Z: -0.2069133073091507
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
