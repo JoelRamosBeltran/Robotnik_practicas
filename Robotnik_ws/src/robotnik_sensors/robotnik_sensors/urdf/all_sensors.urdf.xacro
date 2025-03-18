@@ -50,5 +50,11 @@
   <xacro:include filename="$(find robotnik_sensors)/urdf/camera/axis_m5074.urdf.xacro" />
   <xacro:include filename="$(find robotnik_sensors)/urdf/camera/axis_m5525.urdf.xacro" />
   <xacro:include filename="$(find robotnik_sensors)/urdf/camera/axis_m5526.urdf.xacro" />
+  
+    <!-- BLK ARC -->
+  <xacro:include filename="$(find robotnik_sensors)/urdf/blk_arc.urdf.xacro" />
+  
+    <!-- Link 750 -->
+  <xacro:include filename="$(find robotnik_sensors)/urdf/link_750_nh.urdf.xacro" />
 
 </robot>

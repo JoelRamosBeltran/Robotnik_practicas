@@ -90,13 +90,15 @@
 				</vertical>
 			</vertical_sensing>
 			</gps>
-			<plugin name="${node_name}" filename="libgazebo_ros_gps_sensor.so">
+			<topic>${topic_prefix}</topic>
+          		<ignition_frame_id>${frame_prefix}link</ignition_frame_id>
+			<!--plugin name="${node_name}" filename="libgazebo_ros_gps_sensor.so">
 			<ros>
 				<namespace>${node_namespace}</namespace>
 				<remapping>~/out:=${topic_prefix}fix</remapping>
 				<remapping>~/vel:=${topic_prefix}vel</remapping>
 			</ros>
-			</plugin>
+			</plugin-->
 		</sensor>
 		</gazebo>
 
