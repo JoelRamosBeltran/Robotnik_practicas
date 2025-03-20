@@ -2,7 +2,7 @@
   controller_manager:
     ros__parameters:
       use_sim_time: true
-      update_rate: 100  # Hz
+      update_rate: 1000  # Hz
 
       joint_state_broadcaster:
         type: joint_state_broadcaster/JointStateBroadcaster
@@ -76,8 +76,8 @@
       use_imu: true
 
       #Kinematics Params
-      wheel_radius: 0.15
-      wheel_base:   0.573
+      wheel_radius: 0.11
+      wheel_base:   0.31
       track_width:  1.116
 
       wheels_positions: ["front_right", "front_left", "back_right", "back_left"]

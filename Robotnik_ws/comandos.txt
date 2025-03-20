@@ -6,6 +6,11 @@ rviz2 -d rbrobout.rviz
 
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/robot/robotnik_base_controller/cmd_vel
 
+
+ros2 launch robotnik_gazebo_ignition spawn_robotRbwatcher.launch.py robot:=rbwatcher
+rviz2 -d rbwatcher.rviz
+
+
 source /opt/ros/humble/setup.bash
 colcon build
 source install/setup.bash

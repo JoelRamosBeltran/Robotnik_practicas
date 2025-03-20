@@ -4,7 +4,7 @@
                params="frame_prefix
                        parent
                        *origin
-                       simulation:=false
+                       simulation:=true
                        node_name:=robosense_helios_16p
                        node_namespace:=${None}
                        topic_prefix:=~/
@@ -79,8 +79,8 @@
               </vertical>
             </scan>
             <range>
-              <min>0.05</min>
-              <max>100</max>
+              <min>0.2</min>
+              <max>50</max>
               <resolution>0.001</resolution>
             </range>
             <noise>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
-    <xacro:macro name="rbrobout_gz_ignition_control"  params="namespace prefix">
+    <xacro:macro name="rbwatcher_gz_ignition_control"  params="namespace prefix">
         <gazebo>
           <plugin name="ign_ros2_control::IgnitionROS2ControlPlugin" filename="ign_ros2_control-system">
             <robot_param>robot_description</robot_param>
@@ -45,8 +45,8 @@
              name="ignition::gazebo::systems::DiffDrive">
              <left_joint>${prefix}front_left_wheel_joint</left_joint>
 	     <right_joint>${prefix}front_right_wheel_joint</right_joint>
-             <wheel_separation>0.5</wheel_separation>
-             <wheel_radius>0.22</wheel_radius>
+             <wheel_separation>0.31</wheel_separation>
+             <wheel_radius>0.11</wheel_radius>
              <odom_publish_frequency>1</odom_publish_frequency>
              <topic>cmd_vel</topic>
              <torque>50</torque>
@@ -63,8 +63,8 @@
              name="ignition::gazebo::systems::DiffDrive">
 	     <left_joint>${prefix}back_left_wheel_joint</left_joint>
 	     <right_joint>${prefix}back_right_wheel_joint</right_joint>
-             <wheel_separation>0.573</wheel_separation>
-             <wheel_radius>0.127</wheel_radius>
+             <wheel_separation>0.31</wheel_separation>
+             <wheel_radius>0.11</wheel_radius>
              <odom_publish_frequency>0</odom_publish_frequency>
              <publish_odom>false</publish_odom>
              <publish_odom_tf>false</publish_odom_tf>

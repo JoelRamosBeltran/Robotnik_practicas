@@ -30,7 +30,7 @@
   direction: "GZ_TO_ROS"
 
 - ros_topic_name: "/robot/robotnik_base_controller/odometry"
-  gz_topic_name: "/model/robot/rbrobout/odometry"
+  gz_topic_name: "/model/robot/rbwatcher/odometry"
   ros_type_name: "nav_msgs/msg/Odometry"
   gz_type_name: "ignition.msgs.Odometry"
   direction: "GZ_TO_ROS"
@@ -60,7 +60,7 @@
   direction: "GZ_TO_ROS"
   
 - ros_topic_name: "/tf"
-  gz_topic_name: "/model/robot/rbrobout/tf"
+  gz_topic_name: "/model/robot/rbwatcher/tf"
   ros_type_name: "tf2_msgs/msg/TFMessage"
   gz_type_name: "ignition.msgs.Pose_V"
   direction: "GZ_TO_ROS"
