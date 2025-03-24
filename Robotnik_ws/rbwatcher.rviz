@@ -7,12 +7,6 @@ Panels:
         - /Global Options1
         - /Status1
         - /TF1
-        - /TF1/Tree1/robot_odom1
-        - /TF1/Tree1/robot_odom1/robot_base_footprint1
-        - /TF1/Tree1/robot_odom1/robot_base_footprint1/robot_base_link1
-        - /TF1/Tree1/robot_odom1/robot_base_footprint1/robot_base_link1/robot_top_ptz_camera_base_link1
-        - /TF1/Tree1/robot_odom1/robot_base_footprint1/robot_base_link1/robot_top_ptz_camera_base_link1/robot_top_ptz_camera_pan_link1
-        - /TF1/Tree1/robot_odom1/robot_base_footprint1/robot_base_link1/robot_top_ptz_camera_base_link1/robot_top_ptz_camera_pan_link1/robot_top_ptz_camera_tilt_link1
         - /Odometry1
         - /LaserScan1
         - /Camera1
@@ -64,11 +58,17 @@ Visualization Manager:
         All Enabled: true
         robot_antenna_base_link:
           Value: true
+        robot_back_left_wheel:
+          Value: true
+        robot_back_right_wheel:
+          Value: true
         robot_base_docking_contact_link:
           Value: true
         robot_base_footprint:
           Value: true
         robot_base_link:
+          Value: true
+        robot_front_left_wheel:
           Value: true
         robot_front_rgbd_camera_base_link:
           Value: true
@@ -89,6 +89,8 @@ Visualization Manager:
         robot_front_rgbd_camera_infra2_optical_frame:
           Value: true
         robot_front_rgbd_camera_link:
+          Value: true
+        robot_front_right_wheel:
           Value: true
         robot_gpsbase_link:
           Value: true
@@ -134,10 +136,6 @@ Visualization Manager:
           Value: true
         robot_top_ptz_camera_tilt_link:
           Value: true
-        robot_top_ptz_camera_zoom_color_link:
-          Value: true
-        robot_top_ptz_camera_zoom_thermal_link:
-          Value: true
         robot_top_structure_link:
           Value: true
         robot_vectornav_base_link:
@@ -155,7 +153,13 @@ Visualization Manager:
             robot_base_link:
               robot_antenna_base_link:
                 {}
+              robot_back_left_wheel:
+                {}
+              robot_back_right_wheel:
+                {}
               robot_base_docking_contact_link:
+                {}
+              robot_front_left_wheel:
                 {}
               robot_front_rgbd_camera_base_link:
                 robot_front_rgbd_camera_link:
@@ -171,6 +175,8 @@ Visualization Manager:
                   robot_front_rgbd_camera_infra2_frame:
                     robot_front_rgbd_camera_infra2_optical_frame:
                       {}
+              robot_front_right_wheel:
+                {}
               robot_gpsbase_link:
                 robot_gpslink:
                   {}
@@ -196,12 +202,10 @@ Visualization Manager:
                   robot_top_ptz_camera_tilt_link:
                     robot_top_ptz_camera_frame_link:
                       robot_top_ptz_camera_optical_frame_link:
-                        robot_top_ptz_camera_zoom_color_link:
-                          {}
+                        {}
                     robot_top_ptz_camera_thermal_frame_link:
                       robot_top_ptz_camera_optical_thermal_frame_link:
-                        robot_top_ptz_camera_zoom_thermal_link:
-                          {}
+                        {}
               robot_top_structure_link:
                 {}
               robot_vectornav_base_link:
@@ -298,7 +302,6 @@ Visualization Manager:
       Visibility:
         Camera: true
         Grid: true
-        Image: true
         LaserScan: true
         Odometry: true
         TF: true
@@ -320,40 +323,11 @@ Visualization Manager:
       Visibility:
         Camera: true
         Grid: true
-        Image: true
         LaserScan: true
         Odometry: true
         TF: true
         Value: true
       Zoom Factor: 1
-    - Class: rviz_default_plugins/Image
-      Enabled: false
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /robot/top_ptz_camera/color/image_raw
-      Value: false
-    - Class: rviz_default_plugins/Image
-      Enabled: false
-      Max Value: 1
-      Median window: 5
-      Min Value: 0
-      Name: Image
-      Normalize Range: true
-      Topic:
-        Depth: 5
-        Durability Policy: Volatile
-        History Policy: Keep Last
-        Reliability Policy: Reliable
-        Value: /robot/top_ptz_camera/thermal/image_raw
-      Value: false
     - Class: rviz_default_plugins/Camera
       Enabled: true
       Far Plane Distance: 100
@@ -370,7 +344,6 @@ Visualization Manager:
       Visibility:
         Camera: true
         Grid: true
-        Image: true
         LaserScan: true
         Odometry: true
         TF: true
@@ -392,7 +365,6 @@ Visualization Manager:
       Visibility:
         Camera: true
         Grid: true
-        Image: true
         LaserScan: true
         Odometry: true
         TF: true
@@ -472,9 +444,7 @@ Window Geometry:
   Height: 1016
   Hide Left Dock: false
   Hide Right Dock: false
-  Image:
-    collapsed: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001560000035afc020000000efb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d000000df000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d00650072006101000001220000006e0000002800fffffffb0000000a0049006d00610067006500000001b9000000830000002800fffffffb0000000c00430061006d00650072006101000001960000007b0000002800fffffffb0000000a0049006d006100670065000000031f000000780000002800fffffffb0000000c00430061006d0065007200610100000217000000b40000002800fffffffb0000000c00430061006d00650072006101000002d1000000c60000002800ffffff000000010000010f0000035afc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d0000035a000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000073a0000003efc0100000002fb0000000800540069006d006501000000000000073a000002fb00fffffffb0000000800540069006d00650100000000000004500000000000000000000004c90000035a00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000001560000035afc020000000efb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d000000df000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000000c00430061006d00650072006101000001220000006e0000002800fffffffb0000000a0049006d00610067006500000001b9000000830000000000000000fb0000000c00430061006d00650072006101000001960000007b0000002800fffffffb0000000a0049006d006100670065000000031f000000780000000000000000fb0000000c00430061006d0065007200610100000217000000b40000002800fffffffb0000000c00430061006d00650072006101000002d1000000c60000002800ffffff000000010000010f0000035afc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d0000035a000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e100000197000000030000073a0000003efc0100000002fb0000000800540069006d006501000000000000073a000002fb00fffffffb0000000800540069006d00650100000000000004500000000000000000000004c90000035a00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:

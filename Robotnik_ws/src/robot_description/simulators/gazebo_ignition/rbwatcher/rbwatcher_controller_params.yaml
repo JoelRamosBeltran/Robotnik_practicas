@@ -2,7 +2,7 @@
   controller_manager:
     ros__parameters:
       use_sim_time: true
-      update_rate: 1000  # Hz
+      update_rate: 100  # Hz
 
       joint_state_broadcaster:
         type: joint_state_broadcaster/JointStateBroadcaster
@@ -23,7 +23,8 @@
       use_sim_time: true
       publish_rate: 200
       joints:
-        - robot_lift_ewellix_lift_top_joint
+        - robot_top_ptz_camera_pan_joint
+        - robot_top_ptz_camera_tilt_joint
         - robot_arm_shoulder_pan_joint
         - robot_arm_shoulder_lift_joint
         - robot_arm_elbow_joint
@@ -61,9 +62,9 @@
       cmd_vel_timeout: 1.0
 
       #Topics
-      cmd_vel_topic: /robot/robotnik_base_controller/cmd_vel
-      odom_topic: /robot/robotnik_base_controller/odometry
-      imu_topic: /imu/data
+      cmd_vel_topic: ~/robotnik_base_controller/cmd_vel
+      odom_topic: ~/robotnik_base_controller/odometry
+      imu_topic: ~/imu/data
       emergency_topic: ~/emergency
       joint_control_topic: ~/joint_control_command
 

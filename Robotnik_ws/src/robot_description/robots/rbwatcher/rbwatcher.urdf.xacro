@@ -28,7 +28,7 @@
 	<xacro:arg name="sim_control_period" default="0.004"/>
 	<xacro:arg name="namespace" default="robot"/>
         <xacro:arg name="gazebo_classic" default="false"/>
-        <xacro:arg name="simulator" default="gazebo_ignition"/>
+        <xacro:arg name="gazebo_ignition" default="false"/>
 
 
     <xacro:macro name="rbwatcher" params="prefix publish_bf hq kinematics:=skid leika:=false">
@@ -58,8 +58,8 @@
     	frame_prefix="$(arg prefix)vectornav_"
         parent="$(arg prefix)base_link"
         node_namespace="$(arg namespace)"
-        simulation="$(arg gazebo_classic)"
-        simulator="$(arg simulator)">
+        gazebo_classic="$(arg gazebo_classic)"
+        gazebo_ignition="$(arg gazebo_ignition)">
     	  	<origin xyz="-0.03534 0.132 0.16109" rpy="0 0 0"/>
     	</xacro:sensor_vectornav>
     	
@@ -69,8 +69,8 @@
         parent="$(arg prefix)base_link"
         node_namespace="$(arg namespace)"
         node_name="front_camera"
-        simulator="$(arg simulator)"
-        simulation="$(arg gazebo_classic)"
+        gazebo_classic="$(arg gazebo_classic)"
+        gazebo_ignition="$(arg gazebo_ignition)"
         topic_prefix="front_rgbd_camera">
 	<origin xyz="0.29881 0.0 0.15243" rpy="0 0 0"/>
     	</xacro:sensor_intel_realsense_d435>
@@ -80,8 +80,8 @@
         parent="$(arg prefix)base_link"
         node_namespace="$(arg namespace)"
         node_name="rear_camera"
-        simulator="$(arg simulator)"
-        simulation="$(arg gazebo_classic)"
+        gazebo_classic="$(arg gazebo_classic)"
+        gazebo_ignition="$(arg gazebo_ignition)"
         topic_prefix="rear_rgbd_camera">
 		<origin xyz="-0.308 0.0 0.18308" rpy="0 ${-PI} 0"/>
     	</xacro:sensor_intel_realsense_d435>
@@ -92,7 +92,7 @@
         </xacro:sensor_ublox>
 
     	<!-- LIDAR -->
-    	<xacro:sensor_robosense_helios_16p frame_prefix="$(arg prefix)top_3d_laser" node_namespace="$(arg namespace)" topic_prefix="top_3d_laser" parent="$(arg prefix)base_link" gpu="$(arg gpu)" simulation="$(arg gazebo_classic)">
+    	<xacro:sensor_robosense_helios_16p frame_prefix="$(arg prefix)top_3d_laser" node_namespace="$(arg namespace)" topic_prefix="top_3d_laser" parent="$(arg prefix)base_link" gpu="$(arg gpu)" simulation="$(arg gazebo_ignition)">
     	  	<origin xyz="-0.11924 0.0 0.38609" rpy="0 0 0"/>
     	</xacro:sensor_robosense_helios_16p>
 

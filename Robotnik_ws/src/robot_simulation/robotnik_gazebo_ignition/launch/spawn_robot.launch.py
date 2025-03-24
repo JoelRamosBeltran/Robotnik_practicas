@@ -122,9 +122,10 @@ def generate_launch_description():
                 os.path.join(robot_dir, 'robot_description.launch.py')
             ),
             launch_arguments={
-                'robot': robot,
-                'gazebo_classic': 'true',
-                'simulator': 'gazebo_ignition',
+                'verbose': 'false',
+                'robot_xacro_file': robot_xacro_file,
+                'namespace': params['namespace'],
+                'gazebo_ignition': 'true',
             }.items(),
     )
 
@@ -145,7 +146,7 @@ def generate_launch_description():
             namespace=params['namespace']
     )
     ld.add_action(robot_spawner)
-    bridge_params = os.path.join(get_package_share_directory('robot_description'),'simulators/gazebo_ignition/rbrobout','gz_bridge.yaml')
+    bridge_params = os.path.join(get_package_share_directory('robotnik_gazebo_ignition'),'config','bridge.yaml')
 
     ros_gz_bridge = Node(
         package="ros_gz_bridge",
@@ -159,26 +160,54 @@ def generate_launch_description():
     )
     ld.add_action(ros_gz_bridge)
 
-    ros_gz_image_bridge = Node(
-        package="ros_gz_image",
-        executable="image_bridge",
-        arguments=[
-            "/robot/front_rgbd_camera/color/image_raw", 
-            "/robot/rear_rgbd_camera/color/image_raw"
-            #"/robot/front_rgbd_camera/ired1/image_raw", 
-            #"/robot/rear_rgbd_camera/ired1/image_raw",
-            #"/robot/front_rgbd_camera/ired2/image_raw", 
-            #"/robot/rear_rgbd_camera/ired2/image_raw",
-            #"/robot/front_rgbd_camera/depth/image_raw",
-            #"/robot/rear_rgbd_camera/depth/image_raw"
-        ],
+    # ros_gz_image_bridge = Node(
+    #     package="ros_gz_image",
+    #     executable="image_bridge",
+    #     arguments=[
+    #         "/robot/front_rgbd_camera/color/image_raw", 
+    #         "/robot/rear_rgbd_camera/color/image_raw"
+    #         #"/robot/front_rgbd_camera/ired1/image_raw", 
+    #         #"/robot/rear_rgbd_camera/ired1/image_raw",
+    #         #"/robot/front_rgbd_camera/ired2/image_raw", 
+    #         #"/robot/rear_rgbd_camera/ired2/image_raw",
+    #         #"/robot/front_rgbd_camera/depth/image_raw",
+    #         #"/robot/rear_rgbd_camera/depth/image_raw"
+    #     ],
+    #     namespace=params['namespace']
+    # )
+    # ld.add_action(ros_gz_image_bridge)
+
+    # controller_dir = os.path.join(get_package_share_directory('robotnik_controller'), 'launch')
+
+    
+    joint_state_broadcaster = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster'],
         namespace=params['namespace']
-
     )
-    ld.add_action(ros_gz_image_bridge)
+    ld.add_action(joint_state_broadcaster)
+
+    robotnik_controller= Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['robotnik_base_controller'],
+        output='screen',
+        emulate_tty=True,
+        namespace=params['namespace']
+    )
+
+    init_robotnik_controller = RegisterEventHandler(
+        OnProcessExit(
+            target_action=joint_state_broadcaster,
+            on_exit=[
+                LogInfo(msg='Joint States spawned'),
+                robotnik_controller
+            ]
+        )
+    )
+    ld.add_action(init_robotnik_controller)
 
 
- 
 
     return ld
-
