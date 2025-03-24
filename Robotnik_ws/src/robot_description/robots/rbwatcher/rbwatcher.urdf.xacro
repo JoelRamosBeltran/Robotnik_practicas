@@ -27,7 +27,7 @@
 	<xacro:arg name="gps_longitude" default="0"/>
 	<xacro:arg name="sim_control_period" default="0.004"/>
 	<xacro:arg name="namespace" default="robot"/>
-        <xacro:arg name="gazebo_classic" default="false"/>
+        <xacro:arg name="gazebo_classic" default="true"/>
         <xacro:arg name="gazebo_ignition" default="false"/>
 
 
