@@ -19,4 +19,6 @@ source install/setup.bash
 
 ros2 run xacro xacro -o rbrobout.urdf rbrobout.urdf.xacro
 
-python3 -m urdf2webots.importer --input=rbrobout.urdf --output=rbrobout.proto --normal --box-collision --tool-slot=linkName
+python3 -m urdf2webots.importer --input=rbrobout.urdf --output=rbrobout.proto --normal --box-collision --robot-name=rbrobout
+
+python3 -m urdf2webots.importer --input=rbwatcher.urdf --output=rbwatcher.proto --normal --box-collision --robot-name=rwatcher
