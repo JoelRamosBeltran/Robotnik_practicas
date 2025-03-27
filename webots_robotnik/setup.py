@@ -5,7 +5,8 @@ data_files = []
 data_files.append(('share/ament_index/resource_index/packages', ['resource/' + package_name]))
 data_files.append(('share/' + package_name + '/launch', ['launch/robot_launch_beta.py','launch/robot_launch_avanzado.py']))
 data_files.append(('share/' + package_name + '/worlds',['worlds/Prueba_rbrobout_webots.wbt']))
-data_files.append(('share/' + package_name + '/resource',['resource/rbrobout.urdf','resource/rbrobout_controller_params.yaml','resource/rbrobout_controller.urdf']))
+data_files.append(('share/' + package_name + '/protos',['protos/rbrobout.proto']))
+data_files.append(('share/' + package_name + '/resource',['resource/rbrobout.urdf','resource/rbrobout_controller_params.yaml','resource/rbrobout_controller.urdf','resource/rbrobout_controller_avanzado.urdf']))
 data_files.append(('share/' + package_name, ['package.xml']))
 
 setup(

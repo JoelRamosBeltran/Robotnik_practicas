@@ -46,29 +46,12 @@ def generate_launch_description():
         output='screen',
         arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint'],
     )
-    
-    controller_manager_timeout = ['--controller-manager-timeout', '50']
-    controller_manager_prefix = 'python.exe' if os.name == 'nt' else ''
-    
-    joint_state_broadcaster_spawner = Node(
-        package='controller_manager',
-        executable='spawner',
-        output='screen',
-        prefix=controller_manager_prefix,
-        arguments=['joint_state_broadcaster'] + controller_manager_timeout,
-    )
-    
-    waiting_nodes = WaitForControllerConnection(
-        target_driver=my_robot_driver,
-        nodes_to_start= joint_state_broadcaster_spawner
-    )
 
     return LaunchDescription([
         webots,
         webots._supervisor,
         my_robot_driver,
         robot_state_publisher,
-        waiting_nodes,
         footprint_publisher,
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(

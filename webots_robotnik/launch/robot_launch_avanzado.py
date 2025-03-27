@@ -18,7 +18,7 @@ def load_urdf(file_path):
 
 def generate_launch_description():
     package_dir = get_package_share_directory('webots_robotnik')
-    robot_controller_path = os.path.join(package_dir, 'resource', 'rbrobout_controller.urdf')
+    robot_controller_path = os.path.join(package_dir, 'resource', 'rbrobout_controller_avanzado.urdf')
     robot_description_path = os.path.join(package_dir, 'resource', 'rbrobout.urdf')
     use_sim_time = LaunchConfiguration('use_sim_time', default=True)
     
@@ -66,17 +66,18 @@ def generate_launch_description():
     joint_state_broadcaster = Node(
         package='controller_manager',
         executable='spawner',
-        arguments=['joint_state_broadcaster'],
-        namespace='rbrobout'
+        output='screen',
+        prefix=controller_manager_prefix,
+        arguments=['joint_state_broadcaster'] + controller_manager_timeout,
     )
     
     robotnik_controller= Node(
         package='controller_manager',
         executable='spawner',
-        arguments=['robotnik_base_controller'],
+        arguments=['robotnik_base_controller'] + controller_manager_timeout,
+        prefix=controller_manager_prefix,
         output='screen',
         emulate_tty=True,
-        namespace='rbrobout'
     )
     
     ros_control_spawners = [robotnik_controller, joint_state_broadcaster]
