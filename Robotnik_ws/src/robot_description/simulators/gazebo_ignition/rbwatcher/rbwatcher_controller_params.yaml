@@ -62,8 +62,8 @@
       cmd_vel_timeout: 1.0
 
       #Topics
-      cmd_vel_topic: ~/robotnik_base_controller/cmd_vel
-      odom_topic: ~/robotnik_base_controller/odometry
+      cmd_vel_topic: ~/cmd_vel
+      odom_topic: ~/odometry
       imu_topic: ~/imu/data
       emergency_topic: ~/emergency
       joint_control_topic: ~/joint_control_command

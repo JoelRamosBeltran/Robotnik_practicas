@@ -68,47 +68,47 @@ Robot {
               name "robot_front_right_wheel_joint_sensor"
             }
           ]
-endPoint Solid {
-  translation 0.558 -0.2865 0
-  rotation 0 1 0 0  # Sin rotación global para el modelo (esto sigue siendo global)
+	endPoint Solid {
+	  translation 0.558 -0.2865 0
+	  rotation 0 1 0 0  # Sin rotación global para el modelo (esto sigue siendo global)
 
-  children [
-    # Parte visual del modelo (malla) - aquí rotamos junto con la colisión
-    Shape {
-      appearance USE darkgrey
-      geometry DEF robout_wheel Mesh {
-        url [
-          "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/src/robot_description/meshes/wheels/omni_wheel/robout_wheel.stl"
-        ]
-      }
-    }
-    # Colisión de la rueda, aquí aplicamos la rotación
-    Shape {
-      appearance USE darkgrey
-      geometry DEF wheel_collision Cylinder {
-        height 0.087
-        radius 0.127
-      }
-    }
-  ]
-  rotation 1 0 0 1.5708  # Rotamos todo, tanto la malla como la colisión (90 grados sobre el eje X)
-  name "robot_front_right_wheel_link"
-  boundingObject Cylinder {
-    height 0.087
-    radius 0.127
-  }
-  physics Physics {
-    density -1
-    mass 6.5
-    centerOfMass [0 0 0]
-    inertiaMatrix [
-      0.0303095 0.05241925 0.0303095
-      0 0 0
-    ]
-  }
-  linearVelocity 5.1081415779968945e-12 -7.332384579843867e-13 -8.282206990138889e-06
-  angularVelocity -7.347666218576626e-12 -5.2549886211720226e-11 -4.02051968338612e-18
-}
+	  children [
+	    # Parte visual del modelo (malla) - aquí rotamos junto con la colisión
+	    Shape {
+	      appearance USE darkgrey
+	      geometry DEF robout_wheel Mesh {
+		url [
+		  "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/src/robot_description/meshes/wheels/omni_wheel/robout_wheel.stl"
+		]
+	      }
+	    }
+	    # Colisión de la rueda, aquí aplicamos la rotación
+	    Shape {
+	      appearance USE darkgrey
+	      geometry DEF wheel_collision Cylinder {
+		height 0.087
+		radius 0.127
+	      }
+	    }
+	  ]
+	  rotation 1 0 0 1.5708  # Rotamos todo, tanto la malla como la colisión (90 grados sobre el eje X)
+	  name "robot_front_right_wheel_link"
+	  boundingObject Cylinder {
+	    height 0.087
+	    radius 0.127
+	  }
+	  physics Physics {
+	    density -1
+	    mass 6.5
+	    centerOfMass [0 0 0]
+	    inertiaMatrix [
+	      0.0303095 0.05241925 0.0303095
+	      0 0 0
+	    ]
+	  }
+	  linearVelocity 5.1081415779968945e-12 -7.332384579843867e-13 -8.282206990138889e-06
+	  angularVelocity -7.347666218576626e-12 -5.2549886211720226e-11 -4.02051968338612e-18
+	}
 
 
 
@@ -129,20 +129,20 @@ endPoint Solid {
               name "robot_front_left_wheel_joint_sensor"
             }
           ]
-          endPoint Solid {
+endPoint Solid {
             translation 0.558 0.2865 0
             rotation 0 1 0 0
             children [
-              Pose {
-                rotation 1 0 0 1.570796
-                children [
-                  Shape {
-                    appearance USE darkgrey
-                    geometry USE robout_wheel
-                  }
-                ]
-              }
+		  Shape {
+		    appearance USE darkgrey
+		    geometry USE robout_wheel
+		  }
+		  Shape {
+	      	    appearance USE darkgrey
+	            geometry USE wheel_collision 
+	          }
             ]
+            rotation 1 0 0 1.570796
             name "robot_front_left_wheel_link"
             boundingObject Cylinder {
               height 0.087
@@ -183,16 +183,16 @@ endPoint Solid {
             translation -0.558 0.2865 0
             rotation 0 1 0 0
             children [
-              Pose {
-                rotation 1 0 0 1.570796
-                children [
-                  Shape {
-                    appearance USE darkgrey
-                    geometry USE robout_wheel
-                  }
-                ]
-              }
+		  Shape {
+		    appearance USE darkgrey
+		    geometry USE robout_wheel
+		  }
+		  Shape {
+	      	    appearance USE darkgrey
+	            geometry USE wheel_collision 
+	          }
             ]
+            rotation 1 0 0 1.570796
             name "robot_back_left_wheel_link"
             boundingObject Cylinder {
               height 0.087
@@ -209,8 +209,8 @@ endPoint Solid {
                 0 0 0
               ]
             }
-            linearVelocity 5.107860859438205e-12 -7.331949846147783e-13 -8.282269605912234e-06
-            angularVelocity -7.347664459037194e-12 -5.254987257935495e-11 -4.0204152695863374e-18
+            linearVelocity 5.108122338309992e-12 -7.332349543793639e-13 -8.282211184626447e-06
+            angularVelocity -7.347666425332296e-12 -5.2549888443541723e-11 -4.0204077585993676e-18
           }
         }
         HingeJoint {
@@ -229,20 +229,20 @@ endPoint Solid {
               name "robot_back_right_wheel_joint_sensor"
             }
           ]
-          endPoint Solid {
+endPoint Solid {
             translation -0.558 -0.2865 0
             rotation 0 1 0 0
             children [
-              Pose {
-                rotation 1 0 0 1.570796
-                children [
-                  Shape {
-                    appearance USE darkgrey
-                    geometry USE robout_wheel
-                  }
-                ]
-              }
+		  Shape {
+		    appearance USE darkgrey
+		    geometry USE robout_wheel
+		  }
+		  Shape {
+	      	    appearance USE darkgrey
+	            geometry USE wheel_collision 
+	          }
             ]
+            rotation 1 0 0 1.570796
             name "robot_back_right_wheel_link"
             boundingObject Cylinder {
               height 0.087
@@ -259,8 +259,8 @@ endPoint Solid {
                 0 0 0
               ]
             }
-            linearVelocity 5.107185271912235e-12 -7.33196852000574e-13 -8.282265411672488e-06
-            angularVelocity -7.34766406231237e-12 -5.254988365781501e-11 -4.02055440762279e-18
+            linearVelocity 5.108122338309992e-12 -7.332349543793639e-13 -8.282211184626447e-06
+            angularVelocity -7.347666425332296e-12 -5.2549888443541723e-11 -4.0204077585993676e-18
           }
         }
         Solid {
@@ -591,7 +591,7 @@ endPoint Solid {
       boundingObject USE robout_chassis
       physics Physics {
         density -1
-        mass 200
+        mass 70
         centerOfMass [
           0 0 0.1
         ]

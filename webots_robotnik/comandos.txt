@@ -5,3 +5,5 @@ colcon build
 source install/local_setup.bash
 
 ros2 launch webots_robotnik robot_launch.py
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+rviz2 -d  resource/rbrobout_webots.rviz

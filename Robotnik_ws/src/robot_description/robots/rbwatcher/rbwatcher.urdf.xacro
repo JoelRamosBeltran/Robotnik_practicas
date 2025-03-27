@@ -117,8 +117,6 @@
 		</xacro:if>
 
 		<xacro:rbwatcher_gz_ignition_control namespace="$(arg namespace)" prefix="$(arg prefix)"/>
-        	<xacro:ros_diff_move_gazebo_ignition_front prefix="$(arg prefix)"/>
-        	<xacro:ros_diff_move_gazebo_ignition_rear prefix="$(arg prefix)"/>
 
    </xacro:macro>
 
