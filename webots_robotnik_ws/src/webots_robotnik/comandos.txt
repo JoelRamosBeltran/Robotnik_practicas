@@ -1,0 +1,21 @@
+source /opt/ros/humble/setup.bash
+
+colcon build
+
+source install/local_setup.bash
+
+#Beta es uno sin controladores pero con un nodo para mover las ruedas y Avanzado es el que debería ir con Robotnik_controller.
+
+ros2 launch webots_robotnik robot_launch_avanzado.py
+ros2 launch webots_robotnik robot_launch_beta.py
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+rviz2 -d  resource/rbrobout_webots.rviz
+
+source /opt/ros/humble/setup.bash
+source install/local_setup.bash
+
+
+#Este va pero va con el controller de diff_drive en vez de con el robotnik_controller.
+
+ros2 launch webots_robotnik robot_launch_alfa.py
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/diffdrive_controller/cmd_vel_unstamped

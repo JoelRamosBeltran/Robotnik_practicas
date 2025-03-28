@@ -30,4 +30,5 @@ diffdrive_controller:
 
 joint_state_broadcaster:
   ros__parameters:
-    extra_joints:
+    use_sim_time: true
+    publish_rate: 200

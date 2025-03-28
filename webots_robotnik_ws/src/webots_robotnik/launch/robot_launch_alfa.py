@@ -34,15 +34,15 @@ def generate_launch_description():
         executable='robot_state_publisher',
         output='screen',
         parameters=[{
-            'robot_description': robot_description_content
+            'robot_description': '<robot name=""><link name=""/></robot>'
         }],
     )
 
     my_robot_driver = WebotsController(
         robot_name='rbrobout',
         parameters=[
-            {'robot_description': robot_controller_path},
-            {'set_robot_state_publisher': True},
+            {'robot_description': robot_controller_path,
+            'set_robot_state_publisher': True},
         ]
     )
     
@@ -71,6 +71,14 @@ def generate_launch_description():
         arguments=['joint_state_broadcaster'] + controller_manager_timeout,
     )
     
+    diffdrive_controller_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        output='screen',
+        prefix=controller_manager_prefix,
+        arguments=['diffdrive_controller'] + controller_manager_timeout,
+    )
+    
     robotnik_controller= Node(
         package='controller_manager',
         executable='spawner',
@@ -80,9 +88,9 @@ def generate_launch_description():
         emulate_tty=True,
     )
     
-    ros_control_spawners = [robotnik_controller, joint_state_broadcaster]
+    ros_control_spawners = [diffdrive_controller_spawner, joint_state_broadcaster]
     
-    ros2_control_params = os.path.join(package_dir, 'resource', 'rbrobout_controller_params.yaml')
+    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2controlRbRobout.yml')
     
     rbrobout_driver = WebotsController(
         robot_name='rbrobout',
@@ -97,18 +105,7 @@ def generate_launch_description():
     
     waiting_node = WaitForControllerConnection(
         target_driver=rbrobout_driver,
-        nodes_to_start=[joint_state_broadcaster]
-    )
-
-    
-    init_robotnik_controller = RegisterEventHandler(
-        OnProcessExit(
-            target_action=joint_state_broadcaster,
-            on_exit=[
-                LogInfo(msg='Joint States spawned'),
-                robotnik_controller
-            ]
-        )
+        nodes_to_start=ros_control_spawners
     )
 
     return LaunchDescription([
@@ -118,7 +115,7 @@ def generate_launch_description():
         robot_state_publisher,
         rbrobout_driver,
         waiting_node,
-        init_robotnik_controller,
+        #init_robotnik_controller,
         footprint_publisher,
         launch.actions.RegisterEventHandler(
             event_handler=launch.event_handlers.OnProcessExit(
