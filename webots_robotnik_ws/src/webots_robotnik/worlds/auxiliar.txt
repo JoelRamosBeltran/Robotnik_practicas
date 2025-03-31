@@ -1,112 +1,27 @@
-endPoint Solid {
-	  translation 0.558 -0.2865 0
-	  rotation 0 1 0 0  # Sin rotación global para el modelo (esto sigue siendo global)
+#VRML_SIM R2025a utf8
 
-	  children [
-	    # Parte visual del modelo (malla) - aquí rotamos junto con la colisión
-	    Shape {
-	      appearance USE darkgrey
-	      geometry DEF robout_wheel Mesh {
-		url [
-		  "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/src/robot_description/meshes/wheels/omni_wheel/robout_wheel.stl"
-		]
-	      }
-	    }
-	    # Colisión de la rueda, aquí aplicamos la rotación
-	    Shape {
-	      appearance USE darkgrey
-	      geometry DEF wheel_collision Cylinder {
-		height 0.087
-		radius 0.127
-	      }
-	    }
-	  ]
-	  rotation 1 0 0 1.5708  # Rotamos todo, tanto la malla como la colisión (90 grados sobre el eje X)
-	  name "robot_front_right_wheel_link"
-	  boundingObject Cylinder {
-	    height 0.087
-	    radius 0.127
-	  }
-	  physics Physics {
-	    density -1
-	    mass 6.5
-	    centerOfMass [0 0 0]
-	    inertiaMatrix [
-	      0.0303095 0.05241925 0.0303095
-	      0 0 0
-	    ]
-	  }
-	  linearVelocity 5.1081415779968945e-12 -7.332384579843867e-13 -8.282206990138889e-06
-	  angularVelocity -7.347666218576626e-12 -5.2549886211720226e-11 -4.02051968338612e-18
-	}
-	
-	
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "../protos/rbrobout.proto"
 
-endPoint Solid {
-            translation -0.558 -0.2865 0
-            rotation 0 1 0 0
-            children [
-		  Shape {
-		    appearance USE darkgrey
-		    geometry USE robout_wheel
-		  }
-		  Shape {
-	      	    appearance USE darkgrey
-	            geometry USE wheel_collision 
-	          }
-            ]
-            rotation 1 0 0 1.570796
-            name "robot_back_right_wheel_link"
-            boundingObject Cylinder {
-              height 0.087
-              radius 0.127
-            }
-            physics Physics {
-              density -1
-              mass 6.5
-              centerOfMass [
-                0 0 0
-              ]
-              inertiaMatrix [
-                0.0303095 0.05241925 0.0303095
-                0 0 0
-              ]
-            }
-            linearVelocity 5.108122338309992e-12 -7.332349543793639e-13 -8.282211184626447e-06
-            angularVelocity -7.347666425332296e-12 -5.2549888443541723e-11 -4.0204077585993676e-18
-          }
-
-
-endPoint Solid {
-            translation -0.558 -0.2865 0
-            rotation 0 1 0 0
-            children [
-              Pose {
-                rotation 1 0 0 1.570796
-                children [
-                  Shape {
-                    appearance USE darkgrey
-                    geometry USE robout_wheel
-                  }
-                ]
-              }
-            ]
-            name "robot_back_right_wheel_link"
-            boundingObject Cylinder {
-              height 0.087
-              radius 0.127
-            }
-            physics Physics {
-              density -1
-              mass 6.5
-              centerOfMass [
-                0 0 0
-              ]
-              inertiaMatrix [
-                0.0303095 0.05241925 0.0303095
-                0 0 0
-              ]
-            }
-            linearVelocity 5.107185271912235e-12 -7.33196852000574e-13 -8.282265411672488e-06
-            angularVelocity -7.34766406231237e-12 -5.254988365781501e-11 -4.02055440762279e-18
-          }
+WorldInfo {
+}
+Viewpoint {
+  orientation 0.10191405677525116 -0.18341781994458842 -0.9777379139413515 5.237674100104831
+  position -1.9942878694861297 -4.803766957859288 0.4791667009234102
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0 0 -0.64
+  floorSize 10 10
+  floorTileSize 1 1
+  wallHeight 0.3
+}
+rbrobout {
+  hidden rotation_3 1 2.5545921771152848e-11 -2.554591342287735e-11 1.570796
+  hidden rotation_4 1 2.5509246976885293e-11 -2.5509238640594923e-11 1.570796
+}

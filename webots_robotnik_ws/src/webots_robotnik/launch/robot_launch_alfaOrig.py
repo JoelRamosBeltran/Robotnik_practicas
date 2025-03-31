@@ -12,17 +12,11 @@ from launch.event_handlers import (OnExecutionComplete, OnProcessExit,
 from launch.actions import (DeclareLaunchArgument, EmitEvent, ExecuteProcess,
                             LogInfo, RegisterEventHandler, TimerAction)
 
-from robotnik_common.launch import ExtendedArgument, AddArgumentParser
-
 def load_urdf(file_path):
     with open(file_path, 'r') as f:
         return f.read()
 
 def generate_launch_description():
-
-    ld = LaunchDescription()
-    add_to_launcher = AddArgumentParser(ld)
-    
     package_dir = get_package_share_directory('webots_robotnik')
     robot_controller_path = os.path.join(package_dir, 'resource', 'rbrobout_controller_avanzado.urdf')
     robot_description_path = os.path.join(package_dir, 'resource', 'rbrobout.urdf')
@@ -30,62 +24,6 @@ def generate_launch_description():
     mode = LaunchConfiguration('mode')
     
     robot_description_content = load_urdf(robot_description_path)
-    
-    
-    arg = ExtendedArgument(
-        name='namespace',
-        description='Robot personal name',
-        default_value='robot',
-        use_env=True,
-        environment='NAMESPACE',
-    )
-    add_to_launcher.add_arg(arg)
-    namespace = LaunchConfiguration('namespace')
-
-    arg = ExtendedArgument(
-        name='robot',
-        description='Robot model (rbvogui, rbkairos, rbtheron, rbsummit)',
-        default_value='rbrobout',
-        use_env=True,
-        environment='ROBOT',
-    )
-    add_to_launcher.add_arg(arg)
-    robot = LaunchConfiguration('robot')
-    
-    arg = ExtendedArgument(
-        name='robot_model',
-        description='Robot type variation (rbvogui, rbvogui_6w, rbvogui_ackermann)',
-        default_value=robot,
-        use_env=True,
-        environment='ROBOT_MODEL',
-    )
-    add_to_launcher.add_arg(arg)
-    robot_model = LaunchConfiguration('robot_model')
-
-
-    arg = ExtendedArgument(
-        name='x',
-        description='x position in world',
-        default_value='0.0',
-    )
-    add_to_launcher.add_arg(arg)
-
-    arg = ExtendedArgument(
-        name='y',
-        description='y position in world',
-        default_value='0.0',
-    )
-    add_to_launcher.add_arg(arg)
-
-    arg = ExtendedArgument(
-        name='z',
-        description='z position in world',
-        default_value='0.0',
-    )
-    add_to_launcher.add_arg(arg)
-    params = add_to_launcher.process_arg()
-    
-    
     
     robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -95,7 +33,6 @@ def generate_launch_description():
             'robot_description': '<robot name=""><link name=""/></robot>'
         }],
     )
-    ld.add_action(robot_state_publisher)
     
     spawn_robot_service_call = ExecuteProcess(
     cmd=[
@@ -106,7 +43,6 @@ def generate_launch_description():
     ],
     output='screen'
     )
-    ld.add_action(spawn_robot_service_call)
 
     my_robot_driver = WebotsController(
         robot_name='rbrobout',
@@ -115,7 +51,6 @@ def generate_launch_description():
             'set_robot_state_publisher': True},
         ]
     )
-    #ld.add_action(my_robot_driver)
     
     footprint_publisher = Node(
         package='tf2_ros',
@@ -123,7 +58,6 @@ def generate_launch_description():
         output='screen',
         arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint'],
     )
-    ld.add_action(footprint_publisher)
     
     controller_manager_timeout = ['--controller-manager-timeout', '50']
     controller_manager_prefix = 'python.exe' if os.name == 'nt' else ''
@@ -167,12 +101,18 @@ def generate_launch_description():
         ],
         respawn=True
     )
-    ld.add_action(rbrobout_driver)
     
     waiting_node = WaitForControllerConnection(
         target_driver=rbrobout_driver,
         nodes_to_start=ros_control_spawners
     )
-    ld.add_action(waiting_node)
 
-    return ld
+    return LaunchDescription([
+        #my_robot_driver,
+        robot_state_publisher,
+        spawn_robot_service_call,
+        rbrobout_driver,
+        waiting_node,
+        #init_robotnik_controller,
+        footprint_publisher
+    ])

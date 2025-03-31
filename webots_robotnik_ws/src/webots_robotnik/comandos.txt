@@ -19,3 +19,8 @@ source install/local_setup.bash
 
 ros2 launch webots_robotnik robot_launch_alfa.py
 ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/diffdrive_controller/cmd_vel_unstamped
+
+ros2 service call /Ros2Supervisor/spawn_node_from_string webots_ros2_msgs/srv/SpawnNodeFromString "data: rbrobout { name \"rbrobout\" }"
+
+
+ros2 launch webots_robotnik world_launch.py
