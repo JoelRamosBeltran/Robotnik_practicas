@@ -13,6 +13,8 @@ from launch.actions import (DeclareLaunchArgument, EmitEvent, ExecuteProcess,
                             LogInfo, RegisterEventHandler, TimerAction)
 
 from robotnik_common.launch import ExtendedArgument, AddArgumentParser
+from launch.substitutions import TextSubstitution, PathJoinSubstitution, Command, PythonExpression
+
 
 def load_urdf(file_path):
     with open(file_path, 'r') as f:
@@ -69,6 +71,7 @@ def generate_launch_description():
         default_value='0.0',
     )
     add_to_launcher.add_arg(arg)
+    x_pos = LaunchConfiguration('x')
 
     arg = ExtendedArgument(
         name='y',
@@ -76,6 +79,7 @@ def generate_launch_description():
         default_value='0.0',
     )
     add_to_launcher.add_arg(arg)
+    y_pos = LaunchConfiguration('y')
 
     arg = ExtendedArgument(
         name='z',
@@ -83,6 +87,7 @@ def generate_launch_description():
         default_value='0.0',
     )
     add_to_launcher.add_arg(arg)
+    z_pos = LaunchConfiguration('z')
     params = add_to_launcher.process_arg()
     
     
@@ -102,7 +107,14 @@ def generate_launch_description():
         'ros2', 'service', 'call', 
         '/Ros2Supervisor/spawn_node_from_string', 
         'webots_ros2_msgs/srv/SpawnNodeFromString', 
-        '{data: "rbrobout { name \\"rbrobout\\" }"}'
+        [
+            TextSubstitution(text='{data: "'), 
+            robot, TextSubstitution(text=' { name \\"'), 
+            namespace, TextSubstitution(text='\\" translation '), 
+            x_pos, TextSubstitution(text=' '), 
+            y_pos, TextSubstitution(text=' '), 
+            z_pos, TextSubstitution(text=' }"}')
+        ]
     ],
     output='screen'
     )
@@ -155,14 +167,29 @@ def generate_launch_description():
     
     ros_control_spawners = [diffdrive_controller_spawner, joint_state_broadcaster]
     
-    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2controlRbRobout.yml')
+    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2controlrbrobout.yml')
+    
+    
+    ros2_control_params2= PathJoinSubstitution([
+     package_dir,
+     'resource',
+     TextSubstitution(text='ros2control'),
+     LaunchConfiguration('robot'),
+     TextSubstitution(text='.yml')
+    ])
+    
+    ros2_control_params2 = [package_dir, '/resource/ros2control', robot, '.yml']
+    
+    print(ros2_control_params2)
+    
     
     rbrobout_driver = WebotsController(
         robot_name='rbrobout',
         parameters=[
             {'robot_description': robot_controller_path,
              'use_sim_time': use_sim_time,
-             'set_robot_state_publisher': True},
+             'set_robot_state_publisher': True,
+             'update_rate': 100},
             ros2_control_params
         ],
         respawn=True

@@ -4,6 +4,7 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
 IMPORTABLE EXTERNPROTO "/home/joel/Documentos/GitHub/Robotnik_practicas/webots_robotnik_ws/src/webots_robotnik/protos/rbrobout.proto"
+IMPORTABLE EXTERNPROTO "/home/joel/Documentos/GitHub/Robotnik_practicas/webots_robotnik_ws/src/webots_robotnik/protos/rbwatcher.proto"
 
 WorldInfo {
 }
