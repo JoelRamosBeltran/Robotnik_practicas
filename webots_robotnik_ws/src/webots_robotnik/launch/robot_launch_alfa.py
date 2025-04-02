@@ -167,10 +167,10 @@ def generate_launch_description():
     
     ros_control_spawners = [diffdrive_controller_spawner, joint_state_broadcaster]
     
-    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2controlrbrobout.yml')
+    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2controlrbrobout.yml') #Va pero simplemente puedo seleccionar un yaml predeterminado
     
     
-    ros2_control_params2= PathJoinSubstitution([
+    ros2_control_params2= PathJoinSubstitution([   #No va porque no reconoce PathJoinSubstitution como string
      package_dir,
      'resource',
      TextSubstitution(text='ros2control'),
@@ -178,7 +178,7 @@ def generate_launch_description():
      TextSubstitution(text='.yml')
     ])
     
-    ros2_control_params2 = [package_dir, '/resource/ros2control', robot, '.yml']
+    ros2_control_params2 = [package_dir, '/resource/ros2control', robot, '.yml']  #No va porque no saca el valor de LaunchConfiguration(Robot)
     
     print(ros2_control_params2)
     

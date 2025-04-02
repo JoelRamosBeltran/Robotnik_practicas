@@ -22,6 +22,15 @@ source install/setup.bash
 
 ros2 run xacro xacro -o rbrobout.urdf rbrobout.urdf.xacro
 
+ros2 run xacro xacro -o rbwatcher.urdf rbwatcher.urdf.xacro
+
 python3 -m urdf2webots.importer --input=rbrobout.urdf --output=rbrobout.proto --normal --box-collision --robot-name=rbrobout
 
-python3 -m urdf2webots.importer --input=rbwatcher.urdf --output=rbwatcher.proto --normal --box-collision --robot-name=rwatcher
+python3 -m urdf2webots.importer --input=rbwatcher.urdf --output=rbwatcher.proto --normal --box-collision --robot-name=rbwatcher
+
+ros2 launch robotnik_gazebo_ignition spawn_robot.launch.py robot:=rbrobout robot_model:=rbrobout_topcover
+
+
+
+ros2 run webots_ros2_importer xacro2proto --input=rbwatcher.urdf.xacro --output=rbwatcher.proto
+

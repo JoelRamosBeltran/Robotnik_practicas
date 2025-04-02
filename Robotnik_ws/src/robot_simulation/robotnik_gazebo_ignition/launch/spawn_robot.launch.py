@@ -146,7 +146,11 @@ def generate_launch_description():
             namespace=params['namespace']
     )
     ld.add_action(robot_spawner)
-    bridge_params = os.path.join(get_package_share_directory('robotnik_gazebo_ignition'),'config','bridge.yaml')
+    
+    
+    bridge_params = os.path.join(get_package_share_directory('robotnik_gazebo_ignition'),'config','rbrobout','bridge.yaml') #Va pero solo una ruta predeterminada
+    
+    bridge_params2 = [get_package_share_directory('robotnik_gazebo_ignition'),'/config/',robot,'/bridge.yaml'] #No es capaz de traducir el LaunchConfiguration(robot)
 
     ros_gz_bridge = Node(
         package="ros_gz_bridge",

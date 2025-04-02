@@ -1,14 +1,14 @@
-#VRML_SIM R2025a utf8
+#VRML_SIM R2023b utf8
 # license: Apache License 2.0
 # license url: http://www.apache.org/licenses/LICENSE-2.0
 # This is a proto file for Webots for the rbwatcher
-# Extracted from: /tmp/tmpu9etbf4b.urdf
+# Extracted from: /tmp/tmpdibrboqk.urdf
 
 PROTO rbwatcher [
   field  SFVec3f     translation     0 0 0
   field  SFRotation  rotation        0 0 1 0
   field  SFString    name            "rbwatcher"  # Is `Robot.name`.
-  field  SFString    controller      "void"       # Is `Robot.controller`.
+  field  SFString    controller      "<extern>"       # Is `Robot.controller`.
   field  MFString    controllerArgs  []           # Is `Robot.controllerArgs`.
   field  SFString    customData      ""           # Is `Robot.customData`.
   field  SFBool      supervisor      FALSE        # Is `Robot.supervisor`.
@@ -25,6 +25,8 @@ PROTO rbwatcher [
     supervisor IS supervisor
     synchronization IS synchronization
     selfCollision IS selfCollision
+    physics Physics {
+          }
     children [
       Shape {
         appearance PBRAppearance {
@@ -39,15 +41,8 @@ PROTO rbwatcher [
       Solid {
         translation 0.000000 0.000000 0.117500
         children [
-          Shape {
-            appearance DEF darkgrey PBRAppearance {
-              baseColor 0.100000 0.100000 0.100000
-              roughness 1.000000
-              metalness 0
-            }
-            geometry DEF rbwatcher_body Mesh {
-              url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robot_description/share/robot_description/meshes/bases/rbwatcher/rbwatcher_body.stl"
-            }
+          DEF rbwatcher_body_visual CadShape {
+            url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robot_description/share/robot_description/meshes/bases/rbwatcher/rbwatcher_body.dae"
           }
           HingeJoint {
             jointParameters HingeJointParameters {
@@ -521,7 +516,7 @@ PROTO rbwatcher [
                     verticalFieldOfView 1.483530
                     horizontalResolution 1200
                     numberOfLayers 16
-                    minRange 0.300000
+                    minRange 0.100000
                     maxRange 100.000000
                     resolution 0.001000
                   }
@@ -815,7 +810,9 @@ PROTO rbwatcher [
           }
         ]
         name "robot_base_link"
-        boundingObject USE rbwatcher_body
+        boundingObject DEF rbwatcher_body Mesh {
+          url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robot_description/share/robot_description/meshes/bases/rbwatcher/rbwatcher_body.stl"
+        }
         physics Physics {
           density -1
           mass 50.000000
