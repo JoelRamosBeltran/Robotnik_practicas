@@ -20,5 +20,5 @@ RectangleArena {
   translation 0 0 -0.64
   floorSize 10 10
   floorTileSize 1 1
-  wallHeight 0.3
+  wallHeight 1
 }

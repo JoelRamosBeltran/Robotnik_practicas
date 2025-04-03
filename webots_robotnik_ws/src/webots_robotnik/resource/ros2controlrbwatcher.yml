@@ -33,4 +33,5 @@ joint_state_broadcaster:
     use_sim_time: true
     publish_rate: 200
     extra_joints:
-      - robot_lift_ewellix_lift_top_joint
+      - robot_top_ptz_camera_pan_joint
+      - robot_top_ptz_camera_tilt_joint
