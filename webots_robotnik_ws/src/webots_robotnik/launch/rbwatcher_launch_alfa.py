@@ -99,6 +99,7 @@ def generate_launch_description():
         parameters=[{
             'robot_description': '<robot name=""><link name=""/></robot>'
         }],
+        namespace=params['namespace'],
     )
     ld.add_action(robot_state_publisher)
     
@@ -133,9 +134,19 @@ def generate_launch_description():
         package='tf2_ros',
         executable='static_transform_publisher',
         output='screen',
-        arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint'],
+        arguments=['0', '0', '0', '0', '0', '0', 'rbwatcher/base_link', 'base_footprint'],
+        namespace=params['namespace'],
     )
     ld.add_action(footprint_publisher)
+    
+    baselink_publisher = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        output='screen',
+        arguments=['0', '0', '0', '0', '0', '0', 'rbwatcher/base_link', 'base_link'],
+        namespace=params['namespace'],
+    )
+    ld.add_action(baselink_publisher)
     
     controller_manager_timeout = ['--controller-manager-timeout', '50']
     controller_manager_prefix = 'python.exe' if os.name == 'nt' else ''
@@ -146,6 +157,7 @@ def generate_launch_description():
         output='screen',
         prefix=controller_manager_prefix,
         arguments=['joint_state_broadcaster'] + controller_manager_timeout,
+        namespace=params['namespace'],
     )
     
     diffdrive_controller_spawner = Node(
@@ -154,6 +166,7 @@ def generate_launch_description():
         output='screen',
         prefix=controller_manager_prefix,
         arguments=['diffdrive_controller'] + controller_manager_timeout,
+        namespace=params['namespace'],
     )
     
     robotnik_controller= Node(
@@ -185,6 +198,7 @@ def generate_launch_description():
     
     rbwatcher_driver = WebotsController(
         robot_name='rbwatcher',
+        namespace='rbwatcher',
         parameters=[
             {'robot_description': robot_controller_path,
              'use_sim_time': use_sim_time,

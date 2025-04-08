@@ -2,6 +2,8 @@ import os
 import launch
 from launch_ros.actions import Node
 from launch import LaunchDescription
+from launch.actions import GroupAction, IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from ament_index_python.packages import get_package_share_directory
 from webots_ros2_driver.webots_launcher import WebotsLauncher, Ros2SupervisorLauncher
@@ -90,16 +92,17 @@ def generate_launch_description():
     z_pos = LaunchConfiguration('z')
     params = add_to_launcher.process_arg()
     
-    
-    
+        
     robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',
         parameters=[{
-            'robot_description': '<robot name=""><link name=""/></robot>'
+            'robot_description': '<robot name=""><link name=""/></robot>',
         }],
+        namespace=params['namespace'],
     )
+    
     ld.add_action(robot_state_publisher)
     
     spawn_robot_service_call = ExecuteProcess(
@@ -133,9 +136,19 @@ def generate_launch_description():
         package='tf2_ros',
         executable='static_transform_publisher',
         output='screen',
-        arguments=['0', '0', '0', '0', '0', '0', 'base_link', 'base_footprint'],
+        arguments=['0', '0', '0', '0', '0', '0', 'rbrobout/base_link', 'base_footprint'],
+        namespace=params['namespace'],
     )
     ld.add_action(footprint_publisher)
+    
+    baselink_publisher = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        output='screen',
+        arguments=['0', '0', '0', '0', '0', '0', 'rbrobout/base_link', 'base_link'],
+        namespace=params['namespace'],
+    )
+    ld.add_action(baselink_publisher)
     
     controller_manager_timeout = ['--controller-manager-timeout', '50']
     controller_manager_prefix = 'python.exe' if os.name == 'nt' else ''
@@ -146,6 +159,7 @@ def generate_launch_description():
         output='screen',
         prefix=controller_manager_prefix,
         arguments=['joint_state_broadcaster'] + controller_manager_timeout,
+        namespace=params['namespace'],
     )
     
     diffdrive_controller_spawner = Node(
@@ -154,6 +168,7 @@ def generate_launch_description():
         output='screen',
         prefix=controller_manager_prefix,
         arguments=['diffdrive_controller'] + controller_manager_timeout,
+        namespace=params['namespace'],
     )
     
     robotnik_controller= Node(
@@ -178,19 +193,20 @@ def generate_launch_description():
      TextSubstitution(text='.yml')
     ])
     
-    ros2_control_params2 = [package_dir, '/resource/ros2control', robot, '.yml']  #No va porque no saca el valor de LaunchConfiguration(Robot)
+    ros2_control_params3 = [package_dir, '/resource/ros2control', robot, '.yml']  #No va porque no saca el valor de LaunchConfiguration(Robot)
     
     print(ros2_control_params2)
     
     
     rbrobout_driver = WebotsController(
         robot_name='rbrobout',
+        namespace='rbrobout',
         parameters=[
             {'robot_description': robot_controller_path,
              'use_sim_time': use_sim_time,
              'set_robot_state_publisher': True,
              'update_rate': 100},
-            ros2_control_params
+             ros2_control_params
         ],
         respawn=True
     )

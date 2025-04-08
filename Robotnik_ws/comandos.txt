@@ -34,3 +34,11 @@ ros2 launch robotnik_gazebo_ignition spawn_robot.launch.py robot:=rbrobout robot
 
 ros2 run webots_ros2_importer xacro2proto --input=rbwatcher.urdf.xacro --output=rbwatcher.proto
 
+
+export ROS_DOMAIN_ID=43
+
+
+
+
+ros2 run ros_gz_bridge parameter_bridge /robot/ublox/data@sensor_msgs/msg/NavSatFixed[ignition.msgs.NavSat
+
