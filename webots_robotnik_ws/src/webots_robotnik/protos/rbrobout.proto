@@ -2,6 +2,7 @@
 # license: Apache License 2.0
 # license url: http://www.apache.org/licenses/LICENSE-2.0
 # This is a proto file for Webots for the rbrobout
+# template language: javascript
 # Extracted from: /home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/src/robot_description/robots/rbrobout/rbrobout.urdf
 
 PROTO rbrobout [
@@ -15,6 +16,42 @@ PROTO rbrobout [
   field  SFBool      synchronization TRUE        # Is `Robot.synchronization`.
   field  SFBool      selfCollision   FALSE       # Is `Robot.selfCollision`.
   field  MFNode      toolSlot        []          # Extend the robot with new nodes at the end of the arm.
+  
+  field  SFString    robot_base_link            "rbrobout/base_link"  # Is `Robot.base_link`.
+  field  SFString    robot_rear_laser_base_link            "rbrobout/rear_laser_base_link"  # Is `Robot.rear_laser_base_link`.
+  field  SFString    robot_rear_laser_link            "rbrobout/rear_laser_link"  # Is `Robot.rear_laser_link`.
+  field  SFString    robot_front_laser_base_link            "rbrobout/front_laser_base_link"  # Is `Robot.front_laser_base_link`.
+  field  SFString    robot_front_laser_link            "rbrobout/front_laser_link"  # Is `Robot.front_laser_link`.
+  field  SFString    robot_rear_rgbd_camera_color_frame            "rbrobout/rear_rgbd_camera_color_frame"  # Is `Robot.rear_rgbd_camera_color_frame`.
+  field  SFString    robot_rear_rgbd_camera_infra2_frame            "rbrobout/rear_rgbd_camera_infra2_frame"  # Is `Robot.rear_rgbd_camera_infra2_frame`.
+  field  SFString    robot_rear_rgbd_camera_depth_frame            "rbrobout/rear_rgbd_camera_depth_frame"  # Is `Robot.rear_rgbd_camera_depth_frame`.
+  field  SFString    robot_rear_rgbd_camera_link            "rbrobout/rear_rgbd_camera_link"  # Is `Robot.rear_rgbd_camera_link`.
+  field  SFString    robot_front_rgbd_camera_color_frame            "rbrobout/front_rgbd_camera_color_frame"  # Is `Robot.front_rgbd_camera_color_frame`.
+  field  SFString    robot_front_rgbd_camera_infra2_frame            "rbrobout/front_rgbd_camera_infra2_frame "  # Is `Robot.front_rgbd_camera_infra2_frame `.
+  field  SFString    robot_front_rgbd_camera_depth_frame            "rbrobout/front_rgbd_camera_depth_frame"  # Is `Robot.front_rgbd_camera_depth_frame`.
+  field  SFString    robot_front_rgbd_camera_link            "rbrobout/front_rgbd_camera_link"  # Is `Robot.front_rgbd_camera_link`.
+  field  SFString    robot_vectornav_base_link            "rbrobout/vectornav_base_link "  # Is `Robot.vectornav_base_link `.
+  field  SFString    robot_back_right_wheel_link            "rbrobout/back_right_wheel_link "  # Is `Robot.back_right_wheel_link `.
+  field  SFString    robot_front_right_wheel_link            "rbrobout/front_right_wheel_link "  # Is `Robot.front_right_wheel_link `.
+  field  SFString    robot_back_left_wheel_link            "rbrobout/back_left_wheel_link "  # Is `Robot.back_left_wheel_link `.
+  field  SFString    robot_front_left_wheel_link           "rbrobout/front_left_wheel_link "  # Is `Robot.front_left_wheel_link `.
+  
+  field  SFString    robot_front_laser_sensor           "rbrobout/front_laser_sensor "  # Is `Robot.front_laser_sensor `.
+  field  SFString    robot_rear_laser_sensor           "rbrobout/rear_laser_sensor "  # Is `Robot.rear_laser_sensor `.
+  field  SFString    rear_camera_color          "rbrobout/rear_camera_color "  # Is `Robot.rear_camera_color `.
+  field  SFString    front_camera_color          "rbrobout/front_camera_color "  # Is `Robot.front_camera_color `.
+  field  SFString    rear_camera_depth          "rbrobout/rear_camera_depth "  # Is `Robot.rear_camera_depth `.
+  field  SFString    front_camera_depth         "rbrobout/front_camera_depth "  # Is `Robot.front_camera_depth `.
+  field  SFString    rear_camera_irred1          "rbrobout/rear_camera_irred1 "  # Is `Robot.rear_camera_irred1 `.
+  field  SFString    front_camera_irred1          "rbrobout/front_camera_irred1 "  # Is `Robot.front_camera_irred1 `.
+  field  SFString    rear_camera_irred2          "rbrobout/rear_camera_irred2 "  # Is `Robot.rear_camera_irred2 `.
+  field  SFString    front_camera_irred2         "rbrobout/front_camera_irred2 "  # Is `Robot.front_camera_irred2 `.
+  field  SFString    imu_inertial         "rbrobout/imu_inertial "  # Is `Robot.imu_inertial `.
+  field  SFString    imu_accelerometer          "rbrobout/imu_accelerometer "  # Is `Robot.imu_accelerometer `.
+  field  SFString    imu_gyro          "rbrobout/imu_gyro "  # Is `Robot.imu_gyro `.
+  field  SFString    imu_compass          "rbrobout/imu_compass "  # Is `Robot.imu_compass `.
+  field  SFString    robot_vectornav_link         "rbrobout/robot_vectornav_link "  # Is `Robot.robot_vectornav_link `.
+  
 ]
 {
   Robot {
@@ -89,7 +126,7 @@ PROTO rbrobout [
 	    }
 	  ]
 	  rotation 1 0 0 1.5708  # Rotamos todo, tanto la malla como la colisión (90 grados sobre el eje X)
-	  name "robot_front_right_wheel_link"
+	  name IS robot_front_right_wheel_link
 	  boundingObject Cylinder {
 	    height 0.087
 	    radius 0.127
@@ -138,7 +175,7 @@ endPoint Solid {
 	          }
             ]
             rotation 1 0 0 1.570796
-            name "robot_front_left_wheel_link"
+            name IS robot_front_left_wheel_link
             boundingObject Cylinder {
               height 0.087
               radius 0.127
@@ -188,7 +225,7 @@ endPoint Solid {
 	          }
             ]
             rotation 1 0 0 1.570796
-            name "robot_back_left_wheel_link"
+            name IS robot_back_left_wheel_link
             boundingObject Cylinder {
               height 0.087
               radius 0.127
@@ -238,7 +275,7 @@ endPoint Solid {
 	          }
             ]
             rotation 1 0 0 1.570796
-            name "robot_back_right_wheel_link"
+            name IS robot_back_right_wheel_link
             boundingObject Cylinder {
               height 0.087
               radius 0.127
@@ -277,22 +314,22 @@ endPoint Solid {
               translation -0.00745 0 0.0088
               children [
                 InertialUnit {
-                  name "imu inertial"
+                  name IS imu_inertial
                 }
                 Accelerometer {
-                  name "imu accelerometer"
+                  name IS imu_accelerometer
                 }
                 Gyro {
-                  name "imu gyro"
+                  name IS imu_gyro
                 }
                 Compass {
-                  name "imu compass"
+                  name IS imu_compass
                 }
               ]
-              name "robot_vectornav_link"
+              name IS robot_vectornav_link
             }
           ]
-          name "robot_vectornav_base_link"
+          name IS robot_vectornav_base_link
           boundingObject Box {
             size 0.036 0.037 0.009
           }
@@ -329,7 +366,7 @@ endPoint Solid {
                   rotation 0 0 1 0
                   children [
                     RangeFinder {
-                      name "front_camera_depth"
+                      name IS front_camera_depth
                       fieldOfView 1.487021
                       width 1280
                       height 720
@@ -340,7 +377,7 @@ endPoint Solid {
                   ]
                 }
               ]
-              name "robot_front_rgbd_camera_depth_frame"
+              name IS robot_front_rgbd_camera_depth_frame
             }
             Solid {
               translation 0 -0.05 0
@@ -350,7 +387,7 @@ endPoint Solid {
                   rotation 0 0 1 0
                   children [
                     Camera {
-                      name "front_camera_irred1"
+                      name IS front_camera_irred1
                       fieldOfView 1.487021
                       width 1280
                       height 720
@@ -363,7 +400,7 @@ endPoint Solid {
                   rotation 0 0 1 0
                   children [
                     Camera {
-                      name "front_camera_irred2"
+                      name IS front_camera_irred2
                       fieldOfView 1.487021
                       width 1280
                       height 720
@@ -372,7 +409,7 @@ endPoint Solid {
                   ]
                 }
               ]
-              name "robot_front_rgbd_camera_infra2_frame"
+              name IS robot_front_rgbd_camera_infra2_frame
             }
             Solid {
               translation 0 0.015 0
@@ -382,7 +419,7 @@ endPoint Solid {
                   rotation 0 0 1 0
                   children [
                     Camera {
-                      name "front_camera_color"
+                      name IS front_camera_color
                       fieldOfView 1.211259
                       width 1920
                       height 1080
@@ -391,10 +428,10 @@ endPoint Solid {
                   ]
                 }
               ]
-              name "robot_front_rgbd_camera_color_frame"
+              name IS robot_front_rgbd_camera_color_frame
             }
           ]
-          name "robot_front_rgbd_camera_link"
+          name IS robot_front_rgbd_camera_link
           boundingObject Box {
             size 0.02505 0.09 0.025
           }
@@ -428,7 +465,7 @@ endPoint Solid {
                   rotation 1 0 0 3.14159
                   children [
                     RangeFinder {
-                      name "rear_camera_depth"
+                      name IS rear_camera_depth
                       fieldOfView 1.487021
                       width 1280
                       height 720
@@ -439,7 +476,7 @@ endPoint Solid {
                   ]
                 }
               ]
-              name "robot_rear_rgbd_camera_depth_frame"
+              name IS robot_rear_rgbd_camera_depth_frame
             }
             Solid {
               translation 0 -0.05 0
@@ -449,7 +486,7 @@ endPoint Solid {
                   rotation 1 0 0 3.14159
                   children [
                     Camera {
-                      name "rear_camera_irred1"
+                      name IS rear_camera_irred1
                       fieldOfView 1.487021
                       width 1280
                       height 720
@@ -462,7 +499,7 @@ endPoint Solid {
                   rotation 1 0 0 3.14159
                   children [
                     Camera {
-                      name "rear_camera_irred2"
+                      name IS rear_camera_irred2
                       fieldOfView 1.487021
                       width 1280
                       height 720
@@ -471,7 +508,7 @@ endPoint Solid {
                   ]
                 }
               ]
-              name "robot_rear_rgbd_camera_infra2_frame"
+              name IS robot_rear_rgbd_camera_infra2_frame
             }
             Solid {
               translation 0 0.015 0
@@ -481,7 +518,7 @@ endPoint Solid {
                   rotation 1 0 0 3.14159
                   children [
                     Camera {
-                      name "rear_camera_color"
+                      name IS rear_camera_color
                       fieldOfView 1.211259
                       width 1920
                       height 1080
@@ -490,10 +527,10 @@ endPoint Solid {
                   ]
                 }
               ]
-              name "robot_rear_rgbd_camera_color_frame"
+              name IS robot_rear_rgbd_camera_color_frame
             }
           ]
-          name "robot_rear_rgbd_camera_link"
+          name IS robot_rear_rgbd_camera_link
           boundingObject Box {
             size 0.02505 0.09 0.025
           }
@@ -522,7 +559,7 @@ endPoint Solid {
               translation 0 0 0.11
               children [
                 Lidar {
-                  name "robot_front_laser_sensor"
+                  name IS robot_front_laser_sensor
                   horizontalResolution 700
                   fieldOfView 4.7
                   numberOfLayers 1
@@ -532,10 +569,10 @@ endPoint Solid {
                   resolution 0.00575
                 }
               ]
-              name "robot_front_laser_link"
+              name IS robot_front_laser_link
             }
           ]
-          name "robot_front_laser_base_link"
+          name IS robot_front_laser_base_link
           boundingObject DEF microscan3 Mesh {
             url [
               "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robotnik_sensors/share/robotnik_sensors/meshes/2d_lidar/sick/microscan3.dae"
@@ -562,7 +599,7 @@ endPoint Solid {
               translation 0 0 0.11
               children [
                 Lidar {
-                  name "robot_rear_laser_sensor"
+                  name IS robot_rear_laser_sensor
                   horizontalResolution 700
                   fieldOfView 4.7
                   numberOfLayers 1
@@ -572,10 +609,10 @@ endPoint Solid {
                   resolution 0.00575
                 }
               ]
-              name "robot_rear_laser_link"
+               name IS robot_rear_laser_link
             }
           ]
-          name "robot_rear_laser_base_link"
+          name IS robot_rear_laser_base_link
           boundingObject USE microscan3
           physics Physics {
             density -1
@@ -590,7 +627,7 @@ endPoint Solid {
           }
         }
       ]
-      name "robot_base_link"
+      name IS robot_base_link
       boundingObject USE robout_chassis
       physics Physics {
         density -1

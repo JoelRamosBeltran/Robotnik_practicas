@@ -148,6 +148,15 @@ def generate_launch_description():
     )
     ld.add_action(baselink_publisher)
     
+    world_publisher = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        output='screen',
+        arguments=['0', '0', '0', '0', '0', '0', 'world', 'rbwatcher/odom'],
+        namespace=params['namespace'],
+    )
+    ld.add_action(world_publisher)
+    
     controller_manager_timeout = ['--controller-manager-timeout', '50']
     controller_manager_prefix = 'python.exe' if os.name == 'nt' else ''
     

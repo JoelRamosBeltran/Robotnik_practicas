@@ -2,6 +2,7 @@
 # license: Apache License 2.0
 # license url: http://www.apache.org/licenses/LICENSE-2.0
 # This is a proto file for Webots for the rbrobout
+# template language: javascript
 # Extracted from: /home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/src/robot_description/robots/rbrobout/rbrobout.urdf
 
 PROTO rbrobout [
@@ -572,7 +573,7 @@ endPoint Solid {
                   resolution 0.00575
                 }
               ]
-              name "robot_rear_laser_link"
+               name "robot_rear_laser_link"
             }
           ]
           name "robot_rear_laser_base_link"
