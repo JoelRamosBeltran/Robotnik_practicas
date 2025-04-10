@@ -5,7 +5,7 @@ from launch import LaunchDescription
 from launch.actions import GroupAction, IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
-from ament_index_python.packages import get_package_share_directory
+from ament_index_python.packages import get_package_share_directory,get_package_prefix
 from webots_ros2_driver.webots_launcher import WebotsLauncher, Ros2SupervisorLauncher
 from webots_ros2_driver.webots_controller import WebotsController
 from webots_ros2_driver.wait_for_controller_connection import WaitForControllerConnection
@@ -16,6 +16,7 @@ from launch.actions import (DeclareLaunchArgument, EmitEvent, ExecuteProcess,
 
 from robotnik_common.launch import ExtendedArgument, AddArgumentParser
 from launch.substitutions import TextSubstitution, PathJoinSubstitution, Command, PythonExpression
+from webots_ros2_driver.utils import controller_protocol, controller_ip_address
 
 
 def load_urdf(file_path):
@@ -29,6 +30,7 @@ def generate_launch_description():
     
     package_dir = get_package_share_directory('webots_robotnik')
     robot_controller_path = os.path.join(package_dir, 'resource', 'rbrobout_controller_avanzado.urdf')
+
     robot_description_path = os.path.join(package_dir, 'resource', 'rbrobout.urdf')
     use_sim_time = LaunchConfiguration('use_sim_time', default=True)
     mode = LaunchConfiguration('mode')
@@ -92,6 +94,8 @@ def generate_launch_description():
     z_pos = LaunchConfiguration('z')
     params = add_to_launcher.process_arg()
     
+
+    
         
     robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -112,8 +116,42 @@ def generate_launch_description():
         'webots_ros2_msgs/srv/SpawnNodeFromString', 
         [
             TextSubstitution(text='{data: "'), 
-            robot, TextSubstitution(text=' { name \\"'), 
-            namespace, TextSubstitution(text='\\" translation '), 
+            robot, 
+            TextSubstitution(text=' { name \\"'), namespace, TextSubstitution(text='\\" '), 
+            TextSubstitution(text='robot_base_link \\"'), namespace, TextSubstitution(text='/base_link\\" '), 
+            TextSubstitution(text='robot_rear_laser_base_link \\"'), namespace, TextSubstitution(text='/rear_laser_base_link\\" '),
+            TextSubstitution(text='robot_rear_laser_link \\"'), namespace, TextSubstitution(text='/rear_laser_link\\" '),
+            TextSubstitution(text='robot_front_laser_base_link \\"'), namespace, TextSubstitution(text='/front_laser_base_link\\" '),
+            TextSubstitution(text='robot_front_laser_link \\"'), namespace, TextSubstitution(text='/front_laser_link\\" '),
+            TextSubstitution(text='robot_rear_rgbd_camera_color_frame \\"'), namespace, TextSubstitution(text='/rear_rgbd_camera_color_frame\\" '),
+            TextSubstitution(text='robot_rear_rgbd_camera_infra2_frame \\"'), namespace, TextSubstitution(text='/rear_rgbd_camera_infra2_frame\\" '),
+            TextSubstitution(text='robot_rear_rgbd_camera_link \\"'), namespace, TextSubstitution(text='/rear_rgbd_camera_link\\" '),
+            TextSubstitution(text='robot_rear_rgbd_camera_depth_frame \\"'), namespace, TextSubstitution(text='/rear_rgbd_camera_depth_frame\\" '),
+            TextSubstitution(text='robot_front_rgbd_camera_color_frame \\"'), namespace, TextSubstitution(text='/front_rgbd_camera_color_frame\\" '),
+            TextSubstitution(text='robot_front_rgbd_camera_infra2_frame \\"'), namespace, TextSubstitution(text='/front_rgbd_camera_infra2_frame\\" '),
+            TextSubstitution(text='robot_front_rgbd_camera_depth_frame \\"'), namespace, TextSubstitution(text='/front_rgbd_camera_depth_frame\\" '),
+            TextSubstitution(text='robot_front_rgbd_camera_link \\"'), namespace, TextSubstitution(text='/front_rgbd_camera_link\\" '),
+            TextSubstitution(text='robot_vectornav_base_link \\"'), namespace, TextSubstitution(text='/vectornav_base_link\\" '),
+            TextSubstitution(text='robot_back_right_wheel_link \\"'), namespace, TextSubstitution(text='/back_right_wheel_link\\" '),
+            TextSubstitution(text='robot_front_right_wheel_link \\"'), namespace, TextSubstitution(text='/front_right_wheel_link\\" '),
+            TextSubstitution(text='robot_back_left_wheel_link \\"'), namespace, TextSubstitution(text='/back_left_wheel_link\\" '),
+            TextSubstitution(text='robot_front_left_wheel_link \\"'), namespace, TextSubstitution(text='/front_left_wheel_link\\" '),
+            TextSubstitution(text='robot_front_laser_sensor \\"'), namespace, TextSubstitution(text='/front_laser_sensor\\" '),
+            TextSubstitution(text='robot_rear_laser_sensor \\"'), namespace, TextSubstitution(text='/rear_laser_sensor\\" '),
+            TextSubstitution(text='rear_camera_color \\"'), namespace, TextSubstitution(text='/rear_camera_color\\" '),
+            TextSubstitution(text='rear_camera_depth \\"'), namespace, TextSubstitution(text='/rear_camera_depth\\" '),
+            TextSubstitution(text='rear_camera_irred1 \\"'), namespace, TextSubstitution(text='/rear_camera_irred1\\" '),
+            TextSubstitution(text='rear_camera_irred2 \\"'), namespace, TextSubstitution(text='/rear_camera_irred2\\" '),
+            TextSubstitution(text='front_camera_color \\"'), namespace, TextSubstitution(text='/front_camera_color\\" '),
+            TextSubstitution(text='front_camera_depth \\"'), namespace, TextSubstitution(text='/front_camera_depth\\" '),
+            TextSubstitution(text='front_camera_irred1 \\"'), namespace, TextSubstitution(text='/front_camera_irred1\\" '),
+            TextSubstitution(text='front_camera_irred2 \\"'), namespace, TextSubstitution(text='/front_camera_irred2\\" '),
+            TextSubstitution(text='imu_inertial \\"'), namespace, TextSubstitution(text='/imu_inertial\\" '),
+            TextSubstitution(text='imu_accelerometer \\"'), namespace, TextSubstitution(text='/imu_accelerometer\\" '),
+            TextSubstitution(text='imu_gyro \\"'), namespace, TextSubstitution(text='/imu_gyro\\" '),
+            TextSubstitution(text='imu_compass \\"'), namespace, TextSubstitution(text='/imu_compass\\" '),
+            TextSubstitution(text='robot_vectornav_link \\"'), namespace, TextSubstitution(text='/vectornav_link\\" '),
+            TextSubstitution(text='translation '), 
             x_pos, TextSubstitution(text=' '), 
             y_pos, TextSubstitution(text=' '), 
             z_pos, TextSubstitution(text=' }"}')
@@ -136,19 +174,19 @@ def generate_launch_description():
         package='tf2_ros',
         executable='static_transform_publisher',
         output='screen',
-        arguments=['0', '0', '0', '0', '0', '0', 'rbrobout/base_link', 'base_footprint'],
+        arguments=['0', '0', '0', '0', '0', '0', [namespace,'/base_link'], [namespace,'/base_footprint']],
         namespace=params['namespace'],
     )
     ld.add_action(footprint_publisher)
     
-    world_publisher = Node(
+    worldtf_publisher = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
         output='screen',
-        arguments=['0', '0', '0', '0', '0', '0', 'world', 'rbrobout/odom'],
+        arguments=[x_pos, y_pos, z_pos, '0', '0', '0', 'world', [namespace,'/odom']],
         namespace=params['namespace'],
     )
-    ld.add_action(world_publisher)
+    ld.add_action(worldtf_publisher)
     
     controller_manager_timeout = ['--controller-manager-timeout', '50']
     controller_manager_prefix = 'python.exe' if os.name == 'nt' else ''
@@ -182,33 +220,46 @@ def generate_launch_description():
     
     ros_control_spawners = [diffdrive_controller_spawner, joint_state_broadcaster]
     
-    ros2_control_params = os.path.join(package_dir, 'resource', 'ros2controlrbrobout.yml') #Va pero simplemente puedo seleccionar un yaml predeterminado
+    
+    ros2_control_params = [package_dir, '/resource/ros2control', robot, '.yml']
+    
+   
+    
+    node_name = ['webots_controller_',namespace]
+    webots_controller = (os.path.join(get_package_share_directory('webots_ros2_driver'), 'scripts', 'webots-controller'))
+    protocol = controller_protocol()
+    ip_address = controller_ip_address() if (protocol == 'tcp') else ''
+    ip_address_option = [] if not ip_address else ['--ip-address=' + ip_address]
+    port = '1234'
+    
+
+    
+    ros_arguments = [
+    f"-r", ["__ns:=/",namespace],
+    f"-p", ["robot_description:=",package_dir,'/resource/',robot,'_controller_avanzado.urdf'],
+    f"-p", "use_sim_time:=True",
+    f"-p", "set_robot_state_publisher:=True",
+    f"-p", "update_rate:=100"]
     
     
-    ros2_control_params2= PathJoinSubstitution([   #No va porque no reconoce PathJoinSubstitution como string
-     package_dir,
-     'resource',
-     TextSubstitution(text='ros2control'),
-     LaunchConfiguration('robot'),
-     TextSubstitution(text='.yml')
-    ])
-    
-    ros2_control_params3 = [package_dir, '/resource/ros2control', robot, '.yml']  #No va porque no saca el valor de LaunchConfiguration(Robot)
-    
-    print(ros2_control_params2)
-    
-    
-    rbrobout_driver = WebotsController(
-        robot_name='rbrobout',
-        namespace='rbrobout',
-        parameters=[
-            {'robot_description': robot_controller_path,
-             'use_sim_time': use_sim_time,
-             'set_robot_state_publisher': True,
-             'update_rate': 100},
-             ros2_control_params
-        ],
-        respawn=True
+    rbrobout_driver = ExecuteProcess(
+    cmd=[
+    	webots_controller,
+    	["--robot-name=",namespace],
+    	['--protocol=', protocol],
+    	*ip_address_option,
+    	['--port=', port],
+        'ros2',
+        '--ros-args',
+        *ros_arguments,
+        '--params-file',
+        ros2_control_params
+    ],
+    output='screen',
+    name=node_name,
+    respawn=True,
+    # Set WEBOTS_HOME to package directory to load correct controller library
+    additional_env={'WEBOTS_HOME': get_package_prefix('webots_ros2_driver')},
     )
     ld.add_action(rbrobout_driver)
     

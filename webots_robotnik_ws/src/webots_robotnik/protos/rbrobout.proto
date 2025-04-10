@@ -50,7 +50,7 @@ PROTO rbrobout [
   field  SFString    imu_accelerometer          "rbrobout/imu_accelerometer "  # Is `Robot.imu_accelerometer `.
   field  SFString    imu_gyro          "rbrobout/imu_gyro "  # Is `Robot.imu_gyro `.
   field  SFString    imu_compass          "rbrobout/imu_compass "  # Is `Robot.imu_compass `.
-  field  SFString    robot_vectornav_link         "rbrobout/robot_vectornav_link "  # Is `Robot.robot_vectornav_link `.
+  field  SFString    robot_vectornav_link         "rbrobout/vectornav_link "  # Is `Robot.robot_vectornav_link `.
   
 ]
 {

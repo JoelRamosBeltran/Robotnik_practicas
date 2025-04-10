@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="rbrobout">
+<robot name="rbwatcher">
     <webots>
         <plugin type="webots_ros2_control::Ros2Control">
             <robot_param>robot_description</robot_param>
