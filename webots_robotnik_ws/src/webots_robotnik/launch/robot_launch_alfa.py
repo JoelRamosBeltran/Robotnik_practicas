@@ -93,9 +93,7 @@ def generate_launch_description():
     add_to_launcher.add_arg(arg)
     z_pos = LaunchConfiguration('z')
     params = add_to_launcher.process_arg()
-    
-
-    
+ 
         
     robot_state_publisher = Node(
         package='robot_state_publisher',
@@ -151,6 +149,22 @@ def generate_launch_description():
             TextSubstitution(text='imu_gyro \\"'), namespace, TextSubstitution(text='/imu_gyro\\" '),
             TextSubstitution(text='imu_compass \\"'), namespace, TextSubstitution(text='/imu_compass\\" '),
             TextSubstitution(text='robot_vectornav_link \\"'), namespace, TextSubstitution(text='/vectornav_link\\" '),
+            TextSubstitution(text='robot_top_structure_link \\"'), namespace, TextSubstitution(text='/top_structure_link\\" '),
+            TextSubstitution(text='robot_gps_base_link \\"'), namespace, TextSubstitution(text='/gps_base_link\\" '),
+            TextSubstitution(text='robot_top_3d_laser \\"'), namespace, TextSubstitution(text='/top_3d_laser\\" '),
+            TextSubstitution(text='robot_top_3d_laserlink \\"'), namespace, TextSubstitution(text='/top_3d_laserlink\\" '),
+            TextSubstitution(text='robot_top_3d_laserbase_link \\"'), namespace, TextSubstitution(text='/top_3d_laserbase_link\\" '),
+            TextSubstitution(text='robot_antenna_base_link \\"'), namespace, TextSubstitution(text='/antenna_base_link\\" '),
+            TextSubstitution(text='robot_top_ptz_camera_sensor \\"'), namespace, TextSubstitution(text='/top_ptz_camera_sensor\\" '),
+            TextSubstitution(text='robot_top_ptz_camera_zoom_color_link \\"'), namespace, TextSubstitution(text='/top_ptz_camera_zoom_color_link\\" '),
+            TextSubstitution(text='robot_top_ptz_camera_optical_frame_link \\"'), namespace, TextSubstitution(text='/top_ptz_camera_optical_frame_link\\" '),
+            TextSubstitution(text='robot_top_ptz_camera_frame_link \\"'), namespace, TextSubstitution(text='/top_ptz_camera_frame_link\\" '),
+            TextSubstitution(text='robot_top_ptz_camera_zoom_thermal_link \\"'), namespace, TextSubstitution(text='/top_ptz_camera_zoom_thermal_link\\" '),
+            TextSubstitution(text='robot_top_ptz_camera_optical_thermal_frame_link \\"'), namespace, TextSubstitution(text='/top_ptz_camera_optical_thermal_frame_link\\" '),
+            TextSubstitution(text='robot_top_ptz_camera_thermal_frame_link \\"'), namespace, TextSubstitution(text='/top_ptz_camera_thermal_frame_link\\" '),
+            TextSubstitution(text='robot_top_ptz_camera_tilt_link \\"'), namespace, TextSubstitution(text='/top_ptz_camera_tilt_link\\" '),
+            TextSubstitution(text='robot_top_ptz_camera_pan_link \\"'), namespace, TextSubstitution(text='/top_ptz_camera_pan_link\\" '),
+            TextSubstitution(text='robot_top_ptz_camera_base_link \\"'), namespace, TextSubstitution(text='/top_ptz_camera_base_link\\" '),
             TextSubstitution(text='translation '), 
             x_pos, TextSubstitution(text=' '), 
             y_pos, TextSubstitution(text=' '), 

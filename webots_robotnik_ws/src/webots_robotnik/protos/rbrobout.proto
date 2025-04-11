@@ -27,35 +27,36 @@ PROTO rbrobout [
   field  SFString    robot_rear_rgbd_camera_depth_frame            "rbrobout/rear_rgbd_camera_depth_frame"  # Is `Robot.rear_rgbd_camera_depth_frame`.
   field  SFString    robot_rear_rgbd_camera_link            "rbrobout/rear_rgbd_camera_link"  # Is `Robot.rear_rgbd_camera_link`.
   field  SFString    robot_front_rgbd_camera_color_frame            "rbrobout/front_rgbd_camera_color_frame"  # Is `Robot.front_rgbd_camera_color_frame`.
-  field  SFString    robot_front_rgbd_camera_infra2_frame            "rbrobout/front_rgbd_camera_infra2_frame "  # Is `Robot.front_rgbd_camera_infra2_frame `.
+  field  SFString    robot_front_rgbd_camera_infra2_frame            "rbrobout/front_rgbd_camera_infra2_frame"  # Is `Robot.front_rgbd_camera_infra2_frame `.
   field  SFString    robot_front_rgbd_camera_depth_frame            "rbrobout/front_rgbd_camera_depth_frame"  # Is `Robot.front_rgbd_camera_depth_frame`.
   field  SFString    robot_front_rgbd_camera_link            "rbrobout/front_rgbd_camera_link"  # Is `Robot.front_rgbd_camera_link`.
-  field  SFString    robot_vectornav_base_link            "rbrobout/vectornav_base_link "  # Is `Robot.vectornav_base_link `.
-  field  SFString    robot_back_right_wheel_link            "rbrobout/back_right_wheel_link "  # Is `Robot.back_right_wheel_link `.
-  field  SFString    robot_front_right_wheel_link            "rbrobout/front_right_wheel_link "  # Is `Robot.front_right_wheel_link `.
-  field  SFString    robot_back_left_wheel_link            "rbrobout/back_left_wheel_link "  # Is `Robot.back_left_wheel_link `.
-  field  SFString    robot_front_left_wheel_link           "rbrobout/front_left_wheel_link "  # Is `Robot.front_left_wheel_link `.
+  field  SFString    robot_vectornav_base_link            "rbrobout/vectornav_base_link"  # Is `Robot.vectornav_base_link `.
+  field  SFString    robot_back_right_wheel_link            "rbrobout/back_right_wheel_link"  # Is `Robot.back_right_wheel_link `.
+  field  SFString    robot_front_right_wheel_link            "rbrobout/front_right_wheel_link"  # Is `Robot.front_right_wheel_link `.
+  field  SFString    robot_back_left_wheel_link            "rbrobout/back_left_wheel_link"  # Is `Robot.back_left_wheel_link `.
+  field  SFString    robot_front_left_wheel_link           "rbrobout/front_left_wheel_link"  # Is `Robot.front_left_wheel_link `.
   
-  field  SFString    robot_front_laser_sensor           "rbrobout/front_laser_sensor "  # Is `Robot.front_laser_sensor `.
-  field  SFString    robot_rear_laser_sensor           "rbrobout/rear_laser_sensor "  # Is `Robot.rear_laser_sensor `.
-  field  SFString    rear_camera_color          "rbrobout/rear_camera_color "  # Is `Robot.rear_camera_color `.
-  field  SFString    front_camera_color          "rbrobout/front_camera_color "  # Is `Robot.front_camera_color `.
-  field  SFString    rear_camera_depth          "rbrobout/rear_camera_depth "  # Is `Robot.rear_camera_depth `.
-  field  SFString    front_camera_depth         "rbrobout/front_camera_depth "  # Is `Robot.front_camera_depth `.
-  field  SFString    rear_camera_irred1          "rbrobout/rear_camera_irred1 "  # Is `Robot.rear_camera_irred1 `.
-  field  SFString    front_camera_irred1          "rbrobout/front_camera_irred1 "  # Is `Robot.front_camera_irred1 `.
-  field  SFString    rear_camera_irred2          "rbrobout/rear_camera_irred2 "  # Is `Robot.rear_camera_irred2 `.
-  field  SFString    front_camera_irred2         "rbrobout/front_camera_irred2 "  # Is `Robot.front_camera_irred2 `.
-  field  SFString    imu_inertial         "rbrobout/imu_inertial "  # Is `Robot.imu_inertial `.
-  field  SFString    imu_accelerometer          "rbrobout/imu_accelerometer "  # Is `Robot.imu_accelerometer `.
-  field  SFString    imu_gyro          "rbrobout/imu_gyro "  # Is `Robot.imu_gyro `.
-  field  SFString    imu_compass          "rbrobout/imu_compass "  # Is `Robot.imu_compass `.
-  field  SFString    robot_vectornav_link         "rbrobout/vectornav_link "  # Is `Robot.robot_vectornav_link `.
+  field  SFString    robot_front_laser_sensor           "rbrobout/front_laser_sensor"  # Is `Robot.front_laser_sensor `.
+  field  SFString    robot_rear_laser_sensor           "rbrobout/rear_laser_sensor"  # Is `Robot.rear_laser_sensor `.
+  field  SFString    rear_camera_color          "rbrobout/rear_camera_color"  # Is `Robot.rear_camera_color `.
+  field  SFString    front_camera_color          "rbrobout/front_camera_color"  # Is `Robot.front_camera_color `.
+  field  SFString    rear_camera_depth          "rbrobout/rear_camera_depth"  # Is `Robot.rear_camera_depth `.
+  field  SFString    front_camera_depth         "rbrobout/front_camera_depth"  # Is `Robot.front_camera_depth `.
+  field  SFString    rear_camera_irred1          "rbrobout/rear_camera_irred1"  # Is `Robot.rear_camera_irred1 `.
+  field  SFString    front_camera_irred1          "rbrobout/front_camera_irred1"  # Is `Robot.front_camera_irred1 `.
+  field  SFString    rear_camera_irred2          "rbrobout/rear_camera_irred2"  # Is `Robot.rear_camera_irred2 `.
+  field  SFString    front_camera_irred2         "rbrobout/front_camera_irred2"  # Is `Robot.front_camera_irred2 `.
+  field  SFString    imu_inertial         "rbrobout/imu_inertial"  # Is `Robot.imu_inertial `.
+  field  SFString    imu_accelerometer          "rbrobout/imu_accelerometer"  # Is `Robot.imu_accelerometer `.
+  field  SFString    imu_gyro          "rbrobout/imu_gyro"  # Is `Robot.imu_gyro `.
+  field  SFString    imu_compass          "rbrobout/imu_compass"  # Is `Robot.imu_compass `.
+  field  SFString    robot_vectornav_link         "rbrobout/vectornav_link"  # Is `Robot.robot_vectornav_link `.
   
 ]
 {
   Robot {
   translation IS translation
+  rotation IS rotation
   controller IS controller
   physics Physics {
           }
@@ -634,7 +635,7 @@ endPoint Solid {
         mass 70
         centerOfMass [
           0 0 0.1
-        ]
+        ]    selfCollision IS selfCollision
         inertiaMatrix [
           38.16667 67.33333 104.1667
           0 0 0
