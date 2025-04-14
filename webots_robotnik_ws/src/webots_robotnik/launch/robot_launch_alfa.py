@@ -279,8 +279,19 @@ def generate_launch_description():
     
     waiting_node = WaitForControllerConnection(
         target_driver=rbrobout_driver,
-        nodes_to_start=ros_control_spawners
+        nodes_to_start=joint_state_broadcaster
     )
     ld.add_action(waiting_node)
+    
+    init_diffdrive_controller = RegisterEventHandler(
+        OnProcessExit(
+            target_action=joint_state_broadcaster,
+            on_exit=[
+                LogInfo(msg='Joint States spawned'),
+                diffdrive_controller_spawner
+            ]
+        )
+    )
+    ld.add_action(init_diffdrive_controller)
 
     return ld

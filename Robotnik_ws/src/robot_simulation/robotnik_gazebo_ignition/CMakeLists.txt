@@ -31,5 +31,11 @@ install(DIRECTORY
   DESTINATION share/${PROJECT_NAME}/
 )
 
+install(PROGRAMS
+  config/auxiliar/ignition_bridge.sh
+  DESTINATION share/${PROJECT_NAME}/config/auxiliar
+)
+
+
 
 ament_package()
