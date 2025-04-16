@@ -65,6 +65,7 @@ def generate_launch_description():
     add_to_launcher.add_arg(arg)
 
     params = add_to_launcher.process_arg()
+    
 
     gazebo_ignition_launch_group = GroupAction(
         actions=[

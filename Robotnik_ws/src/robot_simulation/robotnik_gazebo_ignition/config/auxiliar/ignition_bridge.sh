@@ -84,7 +84,7 @@ for topic in $topics; do
     echo "Analizando topic: $topic"
 
     # Filtro por namespace o topic /clock
-    if [[ "$topic" != "/clock" && ! "$topic" =~ ^"/$NAMESPACE" ]]; then
+    if [[ ! "$topic" =~ ^"/$NAMESPACE" ]]; then
         echo "Omitido por no coincidir con namespace o /clock"
         continue
     fi

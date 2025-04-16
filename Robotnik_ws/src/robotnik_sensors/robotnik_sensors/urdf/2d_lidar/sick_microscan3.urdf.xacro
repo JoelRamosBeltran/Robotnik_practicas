@@ -63,9 +63,9 @@
       min_angle="-2.35"
       max_angle="2.35"
       frame_link="${frame_prefix}link"
-      rate="30"
-      resolution="0.00575"
-      samples="700"
+      rate="5"
+      resolution="0.02"
+      samples="250"
     >
     </xacro:lidar_2d_plugin>
 

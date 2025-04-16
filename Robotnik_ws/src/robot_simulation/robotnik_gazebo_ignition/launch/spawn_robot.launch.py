@@ -31,7 +31,6 @@ from launch_ros.substitutions import FindPackageShare
 from launch_ros.descriptions import ParameterValue
 from robotnik_common.launch import ExtendedArgument, AddArgumentParser
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.conditions import IfCondition
 
 from ament_index_python.packages import get_package_share_directory
 
@@ -58,7 +57,7 @@ def generate_launch_description():
     arg = ExtendedArgument(
         name='robot',
         description='Robot model (rbvogui, rbkairos, rbtheron, rbsummit)',
-        default_value='',
+        default_value='rbvogui',
         use_env=True,
         environment='ROBOT',
     )
@@ -114,13 +113,6 @@ def generate_launch_description():
         default_value='0.0',
     )
     add_to_launcher.add_arg(arg)
-    
-    arg = ExtendedArgument(
-        name='has_arm',
-        description='If robot has an arm to start controller',
-        default_value='False',
-    )
-    add_to_launcher.add_arg(arg)
     params = add_to_launcher.process_arg()
 
     robot_dir = os.path.join(get_package_share_directory('robot_description'), 'launch')
@@ -154,19 +146,42 @@ def generate_launch_description():
             namespace=params['namespace']
     )
     ld.add_action(robot_spawner)
+    bridge_params = os.path.join(get_package_share_directory('robotnik_gazebo_ignition'),'config','bridge.yaml')
 
-    bridge_params = [get_package_share_directory('robotnik_gazebo_ignition'),'/config/', robot,'/bridge.yaml']
     ros_gz_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        parameters=[
-            {'config_file': bridge_params,
-            'expand_gz_topic_names':True},
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
+            '-p',
+            f'expand_gz_topic_names:={True}'
         ],
         namespace=params['namespace']
     )
     ld.add_action(ros_gz_bridge)
 
+    # ros_gz_image_bridge = Node(
+    #     package="ros_gz_image",
+    #     executable="image_bridge",
+    #     arguments=[
+    #         "/robot/front_rgbd_camera/color/image_raw", 
+    #         "/robot/rear_rgbd_camera/color/image_raw"
+    #         #"/robot/front_rgbd_camera/ired1/image_raw", 
+    #         #"/robot/rear_rgbd_camera/ired1/image_raw",
+    #         #"/robot/front_rgbd_camera/ired2/image_raw", 
+    #         #"/robot/rear_rgbd_camera/ired2/image_raw",
+    #         #"/robot/front_rgbd_camera/depth/image_raw",
+    #         #"/robot/rear_rgbd_camera/depth/image_raw"
+    #     ],
+    #     namespace=params['namespace']
+    # )
+    # ld.add_action(ros_gz_image_bridge)
+
+    # controller_dir = os.path.join(get_package_share_directory('robotnik_controller'), 'launch')
+
+    
     joint_state_broadcaster = Node(
         package='controller_manager',
         executable='spawner',
@@ -174,27 +189,6 @@ def generate_launch_description():
         namespace=params['namespace']
     )
     ld.add_action(joint_state_broadcaster)
-    
-    joint_trajectory_controller= Node(
-        package='controller_manager',
-        executable='spawner',
-        arguments=['joint_trajectory_controller'],
-        output='screen',
-        emulate_tty=True,
-        namespace=params['namespace'],
-        condition=IfCondition(params['has_arm'])
-    )
-
-    init_joint_trajectory_controller = RegisterEventHandler(
-        OnProcessExit(
-            target_action=joint_state_broadcaster,
-            on_exit=[
-                LogInfo(msg='Joint States spawned'),
-                joint_trajectory_controller
-            ]
-        )
-    )
-    ld.add_action(init_joint_trajectory_controller)
 
     robotnik_controller= Node(
         package='controller_manager',
@@ -215,17 +209,5 @@ def generate_launch_description():
         )
     )
     ld.add_action(init_robotnik_controller)
-    
-    rviz2_config = [get_package_share_directory('robotnik_gazebo_ignition'),'/config/', robot,'/rviz_config.rviz']
-    
-    rviz2 = Node(
-        package="rviz2",
-        executable="rviz2",
-        namespace=params['namespace'],
-        arguments=['-d', rviz2_config]
-
-    )
-    ld.add_action(rviz2)
 
     return ld
-

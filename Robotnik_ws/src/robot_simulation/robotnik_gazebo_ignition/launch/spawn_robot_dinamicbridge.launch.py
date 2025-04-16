@@ -217,6 +217,24 @@ def generate_launch_description():
     )
     ld.add_action(rviz2)
     
+    initial_bridge_params = get_package_share_directory('robotnik_gazebo_ignition') + '/config/auxiliar/initial_bridge.yaml'
+    
+    imuclock_gz_bridge = Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            name='ros_gz_clock_bridge',
+            namespace=params['namespace'],
+            output='screen',
+            arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={initial_bridge_params}',
+            '-p',
+            f'expand_gz_topic_names:={True}'],
+        )
+    
+    ld.add_action(imuclock_gz_bridge)
+    
     bridge_yaml_generator = [get_package_share_directory('robotnik_gazebo_ignition'),'/config/auxiliar/ignition_bridge.sh']
     
     bridge_yaml_creator = ExecuteProcess(
@@ -229,12 +247,14 @@ def generate_launch_description():
     )
 
     bridge_params = get_package_share_directory('robotnik_gazebo_ignition') + '/config/auxiliar/topics.yaml'
+
     ros_gz_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        parameters=[
-            {'config_file': bridge_params,
-            'expand_gz_topic_names':True},
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}'
         ],
         namespace=params['namespace']
     )
@@ -260,6 +280,65 @@ def generate_launch_description():
         )
     )
     ld.add_action(init_gz_bridge)
+    
+    joint_state_broadcaster = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster'],
+        namespace=params['namespace']
+    )
+    
+    init_joint_state_broadcaster = RegisterEventHandler(
+        OnProcessStart(
+            target_action=imuclock_gz_bridge,
+            on_start=[
+                LogInfo(msg='Initial Bridge Spawned'),
+                joint_state_broadcaster
+            ]
+        )
+    )
+    ld.add_action(init_joint_trajectory_controller)
+    
+    joint_trajectory_controller= Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_trajectory_controller'],
+        output='screen',
+        emulate_tty=True,
+        namespace=params['namespace'],
+        condition=IfCondition(params['has_arm'])
+    )
+
+    init_joint_trajectory_controller = RegisterEventHandler(
+        OnProcessExit(
+            target_action=joint_state_broadcaster,
+            on_exit=[
+                LogInfo(msg='Joint States spawned'),
+                joint_trajectory_controller
+            ]
+        )
+    )
+    ld.add_action(init_joint_trajectory_controller)
+
+    robotnik_controller= Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['robotnik_base_controller'],
+        output='screen',
+        emulate_tty=True,
+        namespace=params['namespace']
+    )
+
+    init_robotnik_controller = RegisterEventHandler(
+        OnProcessExit(
+            target_action=joint_state_broadcaster,
+            on_exit=[
+                LogInfo(msg='Joint States spawned'),
+                robotnik_controller
+            ]
+        )
+    )
+    ld.add_action(init_robotnik_controller)
 
     return ld
 

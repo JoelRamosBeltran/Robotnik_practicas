@@ -76,11 +76,6 @@
               <max>${max_range}</max>
               <resolution>${resolution}</resolution>
             </range>
-            <noise>
-              <type>gaussian</type>
-              <mean>0.0</mean>
-              <stddev>0.03</stddev>
-            </noise>
           </lidar>
 
           <topic> ${node_namespace}/${node_name}/scan </topic>

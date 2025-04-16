@@ -877,12 +877,6 @@ PROTO rbwatcher [
               }
             ]
             name IS robot_top_ptz_camera_base_link
-            boundingObject Pose {
-              translation -0.070000 -0.070000 -0.045000
-              children [
-                USE link_750_base
-              ]
-            }
             physics Physics {
               density -1
               mass 0.800000
