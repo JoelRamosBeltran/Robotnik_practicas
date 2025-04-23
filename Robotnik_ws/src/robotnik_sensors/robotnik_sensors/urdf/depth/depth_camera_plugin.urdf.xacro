@@ -76,14 +76,9 @@
               <near>${min_depth}</near>
               <far>${max_depth}</far>
             </clip>
-            <noise>
-              <type>gaussian</type>
-              <mean>0.0</mean>
-              <stddev>0.100</stddev>
-            </noise>
           </camera>
           <always_on>1</always_on>
-          <update_rate>90</update_rate>
+          <update_rate>${rate}</update_rate>
           <visualize>false</visualize>
 
           <topic>${node_namespace}/${node_name}/depth/image_raw</topic>

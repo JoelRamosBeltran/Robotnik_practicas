@@ -18,11 +18,8 @@ def load_urdf(file_path):
 
 def generate_launch_description():
     package_dir = get_package_share_directory('webots_robotnik')
-    robot_controller_path = os.path.join(package_dir, 'resource', 'rbrobout_controller_avanzado.urdf')
-    robot_description_path = os.path.join(package_dir, 'resource', 'rbrobout.urdf')
     use_sim_time = LaunchConfiguration('use_sim_time', default=True)
     
-    robot_description_content = load_urdf(robot_description_path)
 
     webots = WebotsLauncher(
         world=os.path.join(package_dir, 'worlds', 'Prueba_rbrobout_webots.wbt'),

@@ -64,8 +64,8 @@
       max_range="100.0"
       max_angle="85"
       frame_link="${frame_prefix}link"
-      rate="10"
-      horizontal_samples="1200"
+      rate="5"
+      horizontal_samples="600"
       vertical_samples="16"
     >
     </xacro:lidar_3d_plugin>

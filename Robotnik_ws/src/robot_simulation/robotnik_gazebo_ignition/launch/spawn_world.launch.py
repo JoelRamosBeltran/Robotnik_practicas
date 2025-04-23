@@ -113,6 +113,18 @@ def generate_launch_description():
     )
     
     ld.add_action(gazebo_ignition_launch_group)
+    
+    imuclock_gz_bridge = Node(
+            package='ros_gz_bridge',
+            executable='parameter_bridge',
+            name='ros_gz_clock_bridge',
+            namespace=params['namespace'],
+            output='screen',
+            arguments=[
+            '/clock@rosgraph_msgs/msg/Clock[ignition.msgs.Clock'],
+        )
+    
+    ld.add_action(imuclock_gz_bridge)
 
     return ld
 

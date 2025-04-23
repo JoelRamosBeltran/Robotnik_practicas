@@ -161,13 +161,13 @@
         gazebo_ignition="${gazebo_ignition}"
         optical_frame="${frame_prefix}infra1_optical_frame"
         reference_frame="${frame_prefix}infra2_frame"
-        horizontal_fov="85.2"
-        vertical_fov="48"
-        video_width="1280"
-        video_height="720"
+        horizontal_fov="60"
+        vertical_fov="30"
+        video_width="640"
+        video_height="480"
         min_depth="0.1"
         max_depth="100"
-        rate="30"
+        rate="5"
       >
       </xacro:irred_camera_plugin>
 
@@ -179,13 +179,13 @@
         gazebo_ignition="${gazebo_ignition}"
         optical_frame="${frame_prefix}infra2_optical_frame"
         reference_frame="${frame_prefix}infra2_frame"
-        horizontal_fov="85.2"
-        vertical_fov="48"
-        video_width="1280"
-        video_height="720"
+        horizontal_fov="60"
+        vertical_fov="30"
+        video_width="640"
+        video_height="480"
         min_depth="0.1"
         max_depth="100"
-        rate="30"
+        rate="5"
       >
       </xacro:irred_camera_plugin>
 
@@ -197,13 +197,13 @@
         gazebo_ignition="${gazebo_ignition}"
         optical_frame="${frame_prefix}depth_optical_frame"
         reference_frame="${frame_prefix}depth_frame"
-        horizontal_fov="85.2"
-        vertical_fov="48"
-        video_width="1280"
-        video_height="720"
+        horizontal_fov="60"
+        vertical_fov="30"
+        video_width="640"
+        video_height="480"
         min_depth="0.1"
         max_depth="100"
-        rate="30"
+        rate="5"
       >
       </xacro:depth_camera_plugin>
 

@@ -175,14 +175,7 @@ def generate_launch_description():
     )
     ld.add_action(spawn_robot_service_call)
 
-    my_robot_driver = WebotsController(
-        robot_name='rbrobout',
-        parameters=[
-            {'robot_description': robot_controller_path,
-            'set_robot_state_publisher': True},
-        ]
-    )
-    #ld.add_action(my_robot_driver)
+
     
     footprint_publisher = Node(
         package='tf2_ros',
