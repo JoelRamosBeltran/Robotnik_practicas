@@ -134,6 +134,7 @@ def generate_launch_description():
                 'robot_xacro_file': robot_xacro_file,
                 'namespace': params['namespace'],
                 'gazebo_ignition': 'true',
+                'frame_prefix': [params['namespace'],'_']
             }.items(),
     )
 

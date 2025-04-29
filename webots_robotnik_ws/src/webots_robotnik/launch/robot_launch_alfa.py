@@ -31,11 +31,11 @@ def generate_launch_description():
     package_dir = get_package_share_directory('webots_robotnik')
     robot_controller_path = os.path.join(package_dir, 'resource', 'rbrobout_controller_avanzado.urdf')
 
-    robot_description_path = os.path.join(package_dir, 'resource', 'rbrobout.urdf')
+    #robot_description_path = os.path.join(package_dir, 'resource', 'rbrobout.urdf')
     use_sim_time = LaunchConfiguration('use_sim_time', default=True)
     mode = LaunchConfiguration('mode')
     
-    robot_description_content = load_urdf(robot_description_path)
+    #robot_description_content = load_urdf(robot_description_path)
     
     
     arg = ExtendedArgument(

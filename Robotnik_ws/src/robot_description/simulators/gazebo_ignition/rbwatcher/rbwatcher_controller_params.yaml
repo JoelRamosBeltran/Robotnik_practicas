@@ -17,33 +17,9 @@
     ros__parameters:
       use_sim_time: true
       publish_rate: 200
-
-  joint_trajectory_controller:
-    ros__parameters:
-      use_sim_time: true
-      publish_rate: 200
-      joints:
+      extra_joints:
         - robot_top_ptz_camera_pan_joint
         - robot_top_ptz_camera_tilt_joint
-        - robot_arm_shoulder_pan_joint
-        - robot_arm_shoulder_lift_joint
-        - robot_arm_elbow_joint
-        - robot_arm_wrist_1_joint
-        - robot_arm_wrist_2_joint
-        - robot_arm_wrist_3_joint
-
-      command_interfaces:
-        - position
-
-      state_interfaces:
-        - position
-        - velocity
-
-      state_publish_rate: 50.0
-      action_monitor_rate: 20.0
-
-      allow_partial_joints_goal: false
-      open_loop_control: true
 
   robotnik_base_controller:
     ros__parameters:
