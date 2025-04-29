@@ -1,13 +1,24 @@
 from setuptools import setup
+from glob import glob
+import os
 
 package_name = 'webots_robotnik'
+
 data_files = []
 data_files.append(('share/ament_index/resource_index/packages', ['resource/' + package_name]))
-data_files.append(('share/' + package_name + '/launch', ['launch/robot_launch_beta.py','launch/robot_launch_avanzado.py','launch/robot_launch_alfa.py', 'launch/world_launch.py','launch/rbwatcher_launch_alfa.py']))
-data_files.append(('share/' + package_name + '/worlds',['worlds/Prueba_rbrobout_webots.wbt']))
-data_files.append(('share/' + package_name + '/protos',['protos/rbrobout.proto','protos/rbwatcher.proto']))
-data_files.append(('share/' + package_name + '/resource',['resource/rbrobout.urdf','resource/rbrobout_controller_params.yaml','resource/rbrobout_controller.urdf','resource/rbrobout_controller_avanzado.urdf','resource/ros2controlrbrobout.yml','resource/ros2controlrbwatcher.yml','resource/rbwatcher_controller_avanzado.urdf']))
 data_files.append(('share/' + package_name, ['package.xml']))
+
+# launch, worlds, protos
+data_files.append(('share/' + package_name + '/launch', glob('launch/*.py')))
+data_files.append(('share/' + package_name + '/worlds', glob('worlds/*.wbt')))
+data_files.append(('share/' + package_name + '/protos', glob('protos/*.proto')))
+
+# resource con subdirectorios
+for dirpath, dirnames, filenames in os.walk('resource'):
+    if filenames:
+        install_path = os.path.join('share', package_name, dirpath)
+        file_paths = [os.path.join(dirpath, f) for f in filenames]
+        data_files.append((install_path, file_paths))
 
 setup(
     name=package_name,
@@ -27,3 +38,4 @@ setup(
         ],
     },
 )
+

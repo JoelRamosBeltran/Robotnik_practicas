@@ -286,5 +286,16 @@ def generate_launch_description():
         )
     )
     ld.add_action(init_diffdrive_controller)
+    
+    rviz2_config = [get_package_share_directory('webots_robotnik'),'/resource/', robot,'/rviz_config.rviz']
+    
+    rviz2 = Node(
+        package="rviz2",
+        executable="rviz2",
+        namespace=params['namespace'],
+        arguments=['-d', rviz2_config]
+
+    )
+    ld.add_action(rviz2)
 
     return ld

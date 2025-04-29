@@ -146,21 +146,17 @@ def generate_launch_description():
             namespace=params['namespace']
     )
     ld.add_action(robot_spawner)
-    bridge_params = os.path.join(get_package_share_directory('robotnik_gazebo_ignition'),'config','bridge.yaml')
+    bridge_params = [get_package_share_directory('robotnik_gazebo_ignition'),'/config/', robot,'/bridge.yaml']
 
     ros_gz_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
-        arguments=[
-            '--ros-args',
-            '-p',
-            f'config_file:={bridge_params}',
-            '-p',
-            f'expand_gz_topic_names:={True}'
+         parameters=[
+            {'config_file': bridge_params,
+            'expand_gz_topic_names':True},
         ],
         namespace=params['namespace']
     )
-    ld.add_action(ros_gz_bridge)
 
     # ros_gz_image_bridge = Node(
     #     package="ros_gz_image",
@@ -209,5 +205,16 @@ def generate_launch_description():
         )
     )
     ld.add_action(init_robotnik_controller)
+    
+    init_param_bridge = RegisterEventHandler(
+        OnProcessExit(
+            target_action=robotnik_controller,
+            on_exit=[
+                LogInfo(msg='Joint States spawned'),
+                ros_gz_bridge
+            ]
+        )
+    )
+    ld.add_action(init_param_bridge)
 
     return ld
