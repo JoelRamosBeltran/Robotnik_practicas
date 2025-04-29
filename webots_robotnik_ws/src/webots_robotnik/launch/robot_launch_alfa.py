@@ -228,7 +228,7 @@ def generate_launch_description():
     ros_control_spawners = [diffdrive_controller_spawner, joint_state_broadcaster]
     
     
-    ros2_control_params = [package_dir, '/resource/ros2control', robot, '.yml']
+    ros2_control_params = [package_dir, '/resource/',robot,'/ros2control', robot, '.yml']
     
    
     
@@ -243,7 +243,7 @@ def generate_launch_description():
     
     ros_arguments = [
     f"-r", ["__ns:=/",namespace],
-    f"-p", ["robot_description:=",package_dir,'/resource/',robot,'_controller_avanzado.urdf'],
+    f"-p", ["robot_description:=",package_dir,'/resource/',robot,'/',robot,'_controller_avanzado.urdf'],
     f"-p", "use_sim_time:=True",
     f"-p", "set_robot_state_publisher:=True",
     f"-p", "update_rate:=100"]
