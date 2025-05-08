@@ -1,0 +1,34 @@
+source /opt/ros/humble/setup.bash
+colcon build
+source install/local_setup.bash
+export ROS_DOMAIN_ID=43
+
+#Beta es uno sin controladores pero con un nodo para mover las ruedas y Avanzado es el que debería ir con Robotnik_controller.
+
+ros2 launch webots_robotnik robot_launch_avanzado.py
+ros2 launch webots_robotnik robot_launch_beta.py
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+rviz2 -d  resource/rbrobout_webots.rviz
+
+source /opt/ros/humble/setup.bash
+source install/local_setup.bash
+export ROS_DOMAIN_ID=43
+
+
+#Este va pero va con el controller de diff_drive en vez de con el robotnik_controller.
+
+ros2 launch webots_robotnik robot_launch_alfa.py robot:=rbrobout namespace:=rbrobout x:=0 y:=0 z:=0
+ros2 launch webots_robotnik robot_launch_alfa.py robot:=rbwatcher namespace:=rbwatcher x:=2 y:=2 z:=0
+
+ros2 launch webots_robotnik rbwatcher_launch_alfa.py robot:=rbwatcher namespace:=rbwatcher
+
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/diffdrive_controller/cmd_vel_unstamped
+
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=rbwatcher/diffdrive_controller/cmd_vel_unstamped
+
+ros2 service call /Ros2Supervisor/spawn_node_from_string webots_ros2_msgs/srv/SpawnNodeFromString "data: rbwatcher { name \"rbwatcher\" }"
+ros2 service call /Ros2Supervisor/spawn_node_from_string webots_ros2_msgs/srv/SpawnNodeFromString "data: rbrobout { name \"rbrobout\" }"
+
+
+ros2 launch webots_robotnik world_launch.py
+
