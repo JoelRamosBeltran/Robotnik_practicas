@@ -12,6 +12,7 @@ data_files.append(('share/' + package_name, ['package.xml']))
 data_files.append(('share/' + package_name + '/launch', glob('launch/*.py')))
 data_files.append(('share/' + package_name + '/worlds', glob('worlds/*.wbt')))
 data_files.append(('share/' + package_name + '/protos', glob('protos/*.proto')))
+data_files.append(('share/' + package_name + '/webots_robotnik', glob('webots_robotnik/*.py')))
 
 # resource con subdirectorios
 for dirpath, dirnames, filenames in os.walk('resource'):
@@ -34,7 +35,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'my_robot_driver = my_package.my_robot_driver:main'
+            'my_robot_driver = webots_robotnik.my_robot_driver:main',
+            'visual_node = webots_robotnik.visual_node:main'
         ],
     },
 )

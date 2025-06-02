@@ -22,8 +22,12 @@ def generate_launch_description():
     
 
     webots = WebotsLauncher(
-        world=os.path.join(package_dir, 'worlds', 'Prueba_rbrobout_webots.wbt'),
-        ros2_supervisor=True
+        world=os.path.join(package_dir, 'worlds', 'default_world.wbt'),
+        ros2_supervisor=True,
+        additional_env={
+        '__NV_PRIME_RENDER_OFFLOAD': '1',
+        '__GLX_VENDOR_LIBRARY_NAME': 'nvidia'
+        }
     )
 
     return LaunchDescription([

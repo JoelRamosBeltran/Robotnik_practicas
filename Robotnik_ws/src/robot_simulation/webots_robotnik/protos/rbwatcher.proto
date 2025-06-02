@@ -91,7 +91,7 @@ PROTO rbwatcher [
               metalness 0
             }
             geometry DEF rbwatcher_body Mesh {
-              url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robot_description/share/robot_description/meshes/bases/rbwatcher/rbwatcher_body.stl"
+              url "../../../../robot_description/share/robot_description/meshes/bases/rbwatcher/rbwatcher_body.stl"
             }
           }
           HingeJoint {
@@ -119,7 +119,7 @@ PROTO rbwatcher [
                     metalness 0
                   }
                   geometry DEF rubber_wheel_v2_right Mesh {
-                    url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robot_description/share/robot_description/meshes/wheels/rubber_wheel/rubber_wheel_v2_right.stl"
+                    url "../../../../robot_description/share/robot_description/meshes/wheels/rubber_wheel/rubber_wheel_v2_right.stl"
                   }
                 }
               ]
@@ -161,7 +161,7 @@ PROTO rbwatcher [
                     metalness 0
                   }
                   geometry DEF rubber_wheel_v2_left Mesh {
-                    url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robot_description/share/robot_description/meshes/wheels/rubber_wheel/rubber_wheel_v2_left.stl"
+                    url "../../../../robot_description/share/robot_description/meshes/wheels/rubber_wheel/rubber_wheel_v2_left.stl"
                   }
                 }
               ]
@@ -268,7 +268,7 @@ PROTO rbwatcher [
                   metalness 0
                 }
                 geometry DEF rbwatcher_top_structure Mesh {
-                  url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robot_description/share/robot_description/meshes/structures/rbwatcher/rbwatcher_top_structure.stl"
+                  url "../../../../robot_description/share/robot_description/meshes/structures/rbwatcher/rbwatcher_top_structure.stl"
                 }
               }
             ]
@@ -294,7 +294,7 @@ PROTO rbwatcher [
                   metalness 0
                 }
                 geometry DEF vectornav_vn100 Mesh {
-                  url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robotnik_sensors/share/robotnik_sensors/meshes/imu/vectornav_vn100.stl"
+                  url "../../../../robotnik_sensors/share/robotnik_sensors/meshes/imu/vectornav_vn100.stl"
                 }
               }
               Solid {
@@ -343,7 +343,7 @@ PROTO rbwatcher [
                 rotation 0.577350 0.577350 0.577350 2.094395
                 children [
                   DEF intel_d435_color_visual CadShape {
-                    url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robotnik_sensors/share/robotnik_sensors/meshes/depth/intel_realsense_d435/intel_d435_color.dae"
+                    url "../../../../robotnik_sensors/share/robotnik_sensors/meshes/depth/intel_realsense_d435/intel_d435_color.dae"
                   }
                 ]
               }
@@ -550,7 +550,7 @@ PROTO rbwatcher [
                   metalness 0
                 }
                 geometry DEF antenna_ANN_MB Mesh {
-                  url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robotnik_sensors/share/robotnik_sensors/meshes/gps/antenna_ANN_MB.stl"
+                  url "../../../../robotnik_sensors/share/robotnik_sensors/meshes/gps/antenna_ANN_MB.stl"
                 }
               }
             ]
@@ -583,7 +583,7 @@ PROTO rbwatcher [
                   metalness 0
                 }
                 geometry DEF helios_16p Mesh {
-                  url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robotnik_sensors/share/robotnik_sensors/meshes/3d_lidar/robotsense/helios_16p.stl"
+                  url "../../../../robotnik_sensors/share/robotnik_sensors/meshes/3d_lidar/robotsense/helios_16p.stl"
                 }
               }
               Solid {
@@ -626,7 +626,7 @@ PROTO rbwatcher [
                   metalness 0
                 }
                 geometry DEF antena_wifi_2J7A747Bc Mesh {
-                  url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robot_description/share/robot_description/meshes/others/antena_wifi_2J7A747Bc.stl"
+                  url "../../../../robot_description/share/robot_description/meshes/others/antena_wifi_2J7A747Bc.stl"
                 }
               }
             ]
@@ -649,7 +649,7 @@ PROTO rbwatcher [
                       metalness 0
                     }
                     geometry DEF link_750_base Mesh {
-                      url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robotnik_sensors/share/robotnik_sensors/meshes/link_750_base.stl"
+                      url "../../../../robotnik_sensors/share/robotnik_sensors/meshes/link_750_base.stl"
                     }
                   }
                 ]
@@ -677,7 +677,7 @@ PROTO rbwatcher [
                     Shape {
                       appearance USE grey_color
                       geometry DEF link_750_pan Mesh {
-                        url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robotnik_sensors/share/robotnik_sensors/meshes/link_750_pan.stl"
+                        url "../../../../robotnik_sensors/share/robotnik_sensors/meshes/link_750_pan.stl"
                       }
                     }
                     HingeJoint {
@@ -707,7 +707,7 @@ PROTO rbwatcher [
                               Shape {
                                 appearance USE grey_color
                                 geometry DEF link_750_tilt Mesh {
-                                  url "/home/joel/Documentos/GitHub/Robotnik_practicas/Robotnik_ws/install/robotnik_sensors/share/robotnik_sensors/meshes/link_750_tilt.stl"
+                                  url "../../../../robotnik_sensors/share/robotnik_sensors/meshes/link_750_tilt.stl"
                                 }
                               }
                             ]
