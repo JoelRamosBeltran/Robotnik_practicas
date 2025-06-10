@@ -15,7 +15,7 @@ class HarukoFollower(Node):
         # Publicador de velocidad
         self.cmd_pub = self.create_publisher(Twist, '/rbwatcher/diffdrive_controller/cmd_vel_unstamped', 10)
 
-        # Subscripciones a sensores
+        # Subscripciones a sensores (El topic está puesto para el RbWatcher de Webots con namespace rbwatcher)
         self.create_subscription(Image, '/rbwatcher/rbwatcher/rbwatcher/front_camera_color/image_color', self.image_callback, 10)
         self.create_subscription(PointCloud2, '/rbwatcher/rbwatcher/rbwatcher/front_camera_depth/point_cloud', self.pointcloud_callback, 10)
 
@@ -38,14 +38,14 @@ class HarukoFollower(Node):
 
         aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_100)
         parameters = cv2.aruco.DetectorParameters_create()
-        parameters.adaptiveThreshConstant = 7  # Reduce la constante de umbral adaptativo (menos contraste necesario)
-        parameters.minMarkerPerimeterRate = 0.02  # Detecta marcadores más pequeños
-        parameters.maxMarkerPerimeterRate = 4.0 # Amplía el rango de tamaño permitido
-        parameters.polygonalApproxAccuracyRate = 0.05  # Permite detectar esquinas menos perfectas
-        parameters.minCornerDistanceRate = 0.05  # Permite marcadores más cerca unos de otros
+        parameters.adaptiveThreshConstant = 7  # Para reducir la constante de umbral adaptativo (menos contraste necesario)
+        parameters.minMarkerPerimeterRate = 0.02  # Para detectar marcadores con perímetros más pequeños
+        parameters.maxMarkerPerimeterRate = 4.0 # Para detectar marcadores con perímetros más grandes
+        parameters.polygonalApproxAccuracyRate = 0.05  # Para detectar esquinas menos perfectas
+        parameters.minCornerDistanceRate = 0.05  # Permite detectar marcadores más cercanos unos de otros.
         parameters.cornerRefinementMethod = cv2.aruco.CORNER_REFINE_SUBPIX  # Mejora la precisión de las esquinas                
-        parameters.minDistanceToBorder = 3  # Permite marcadores más cerca unos de otros
-        parameters.errorCorrectionRate = 0.3 # Mayor tolerancia a errores en el marcador
+        parameters.minDistanceToBorder = 3  # Permite marcadores más cercanos a los bordes
+        parameters.errorCorrectionRate = 0.3 # Parmite una Mayor tolerancia a errores en el marcador
 
         
         corners, ids, _ = cv2.aruco.detectMarkers(gray, aruco_dict, parameters=parameters)
@@ -61,13 +61,13 @@ class HarukoFollower(Node):
         
         cv2.putText(
 	    frame,
-	    f"Estado: {self.state}",  # texto a mostrar
-	    (10, 30),  # posición (x, y) en píxeles
-	    cv2.FONT_HERSHEY_SIMPLEX,  # tipo de fuente
-	    1,  # tamaño de fuente
-	    (0, 255, 0),  # color (verde)
-	    2,  # grosor del texto
-	    cv2.LINE_AA  # suavizado
+	    f"Estado: {self.state}",
+	    (10, 30),  
+	    cv2.FONT_HERSHEY_SIMPLEX,  
+	    1,  
+	    (0, 255, 0),  
+	    2,  
+	    cv2.LINE_AA  
 	)
         cv2.imshow("Camera View", frame)
         cv2.waitKey(1)
