@@ -5,12 +5,14 @@ source /opt/ros/humble/setup.bash
 colcon build
 source install/local_setup.bash
 ros2 launch webots_robotnik world_launch.py
-ros2 launch webots_robotnik visual_world_launch.py
+ros2 launch webots_robotnik vision_world_launch.py
+
 
 source /opt/ros/humble/setup.bash
 source install/local_setup.bash
 ros2 launch webots_robotnik robot_launch_alfa.py robot:=rbrobout namespace:=rbrobout x:=0 y:=0 z:=0
 ros2 launch webots_robotnik robot_launch_alfa.py robot:=rbwatcher namespace:=rbwatcher x:=2 y:=2 z:=0
+ros2 launch webots_robotnik robot_launch_alfa.py robot:=rbwatcher namespace:=rbwatcher x:=0 y:=0 z:=0
 
 #Este va pero va con el controller de diff_drive en vez de con el robotnik_controller.
 
